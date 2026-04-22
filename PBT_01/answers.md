@@ -36,6 +36,7 @@ Sửa lại code :
     <footer class="footer">
         <p>© 2026 ShopTLU</p>
     </footer>
+
 Câu A3:
 Hiển thị như sau: 
 Hộp 1
@@ -57,4 +58,17 @@ Câu A4:
     Rất khó làm Responsive: Thẻ table hiển thị rất cứng. Khi mở trên màn hình điện thoại nhỏ, giao diện sẽ bị vỡ form, tràn viền hoặc ép người dùng phải vuốt ngang màn hình mới xem được.
     Code HTML bị rối, khó bảo trì: Để chia layout bằng table thì phải lồng cả đống thẻ <table>, <tr>, <td> vào nhau. File code sẽ cực kỳ rác, sau này muốn fix bug hay đổi vị trí thanh menu là rất mệt.
     Sai ngữ nghĩa (Semantic) ảnh hưởng SEO: Thẻ <table> sinh ra chỉ để hiển thị dữ liệu dạng bảng( bảng điểm, thời khóa biểu). Lấy nó đi dựng khung giao diện thì Google Bot sẽ đọc không hiểu, quét sai cấu trúc, khiến trang web bị đánh giá SEO rất thấp.
-
+PHẦN B — THỰC HÀNH CODE
+Câu B3: 
+    Lỗi 1: Dòng 1 — Sai cú pháp khai báo chuẩn HTML5 — Cách sửa: Sửa `<!DOCTYPE>` thành `<!DOCTYPE html>`.
+    Lỗi 2: Dòng 1 — Lỗi Semantic: Thẻ `<html>` thiếu thuộc tính khai báo ngôn ngữ — Cách sửa: Thêm `lang="vi"` để thành `<html lang="vi">`.
+    Lỗi 3: Dòng 2 — Thiếu thẻ đóng `</title>` — Cách sửa: Thêm `</title>` vào cuối dòng: `<title>Trang web</title>`.
+    Lỗi 4: Dòng 3 — Sai định dạng ghi chuẩn ký tự utf-8 — Cách sửa: Sửa `charset="utf8"` thành `charset="utf-8"`.
+    Lỗi 5: Dòng 4 — Sai thẻ đóng `<h1>` — Cách sửa: Sửa `<h1>` ở cuối câu thành `</h1>`.
+    Lỗi 6: Dòng 8 — Sai thẻ đóng `<a>` — Cách sửa: Sửa `<a>` ở cuối dòng thành `</a>`.
+    Lỗi 7: Dòng 15 & 22 — Lỗi Semantic: Nhảy cóc cấp độ tiêu đề (từ `<h1>` nhảy thẳng xuống `<h3>` bỏ qua `<h2>`) — Cách sửa: Đổi các thẻ `<h3>` thành `<h2>`.
+    Lỗi 8: Dòng 16 — Lỗi cú pháp & Semantic: Thiếu dấu ngoặc kép ở đường dẫn ảnh và hoàn toàn thiếu thuộc tính `alt` — Cách sửa: Sửa thành `<img src="iphone.jpg" alt="Hình ảnh iPhone 16 Pro">`.
+    Lỗi 9: Dòng 18 — Lỗi đan chéo thẻ (Overlapping tags): Mở `<p>` rồi mở `<b>`, nhưng lại đóng `</p>` trước `</b>` — Cách sửa: Đảo lại thứ tự thẻ đóng thành `<b>25.990.000đ</b></p>`.
+    Lỗi 10: Dòng 24-27 — Lỗi Semantic: Hàng tiêu đề của bảng đang dùng thẻ `<td>` (chứa dữ liệu) thay vì thẻ `<th>` (chứa tiêu đề) — Cách sửa: Đổi `<td>Tên</td>` và `<td>Giá</td>` thành `<th>Tên</th>` và `<th>Giá</th>`. Bổ sung thêm `<thead>` và `<tbody>`.
+    Lỗi 11: Dòng 36 — Lỗi Semantic : Một trang web HTML5 chỉ được phép có duy nhất một thẻ `<main>`. Ngoài ra, Sidebar không được nằm trong `<main>` — Cách sửa: Đổi thẻ `<main>` thứ hai thành `<aside>`.
+    Lỗi 12: Dòng 41 — Thiếu thẻ đóng đoạn văn `</p>` — Cách sửa: Thêm `</p>` vào cuối: `<p>Copyright 2026</p>`.

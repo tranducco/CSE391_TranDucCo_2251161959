@@ -85,3 +85,98 @@ Câu B4:Chọn trang shopee
     Lạm dụng <div> làm liên kết (Link): Một số khu vực sản phẩm hoặc banner quảng cáo, thay vì dùng thẻ <a> chứa thuộc tính href rõ ràng để tốt cho SEO, hệ thống lại bọc bằng một đống thẻ <div> lồng nhau.
     (seomantic_shopee_2.png)
 
+Câu C1:
+    <!DOCTYPE html> <!-- Khai báo HTML5 -->
+<html lang="vi"> <!-- Ngôn ngữ tiếng Việt -->
+<head>
+    <meta charset="UTF-8"> <!-- Hỗ trợ tiếng Việt -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsive -->
+    <title>Chi tiết sản phẩm</title>
+</head>
+<body>
+    <!-- HEADER + NAVIGATION -->
+    <header> <!-- header dùng cho phần đầu trang -->
+        <nav> <!-- nav vì đây là khu điều hướng -->
+            <ul> <!-- danh sách menu -->
+                <li><a href="#">Trang chủ</a></li> <!-- link điều hướng -->
+                <li><a href="#">Danh mục</a></li>
+                <li><a href="#">Liên hệ</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- BREADCRUMB -->
+    <nav aria-label="breadcrumb"> <!-- nav vì breadcrumb là điều hướng -->
+        <ol> <!-- ol vì có thứ tự cấp bậc -->
+            <li><a href="#">Trang chủ</a></li>
+            <li><a href="#">Điện thoại</a></li>
+            <li>iPhone 16</li> <!-- item cuối không cần link -->
+        </ol>
+    </nav>
+    <!-- MAIN CONTENT -->
+    <main> <!-- main chứa nội dung chính của trang -->
+        <!-- KHU SẢN PHẨM -->
+        <section> <!-- section nhóm nội dung sản phẩm -->
+            <!-- ẢNH SẢN PHẨM -->
+            <div> <!-- div để gom ảnh -->
+                <img src="#" alt="Ảnh 1"> <!-- img hiển thị ảnh -->
+                <img src="#" alt="Ảnh 2">
+                <img src="#" alt="Ảnh 3">
+                <img src="#" alt="Ảnh 4">
+                <img src="#" alt="Ảnh 5">
+            </div>
+            <!-- THÔNG TIN SẢN PHẨM -->
+            <article> <!-- article vì đây là nội dung độc lập -->
+                <h1>Tên sản phẩm</h1> <!-- tiêu đề chính -->
+                <p>Giá: ...</p> <!-- mô tả giá -->
+                <p>Mô tả ngắn sản phẩm</p> <!-- mô tả -->
+            </article>
+        </section>
+        <!-- BẢNG THÔNG SỐ -->
+        <section> <!-- section cho thông số kỹ thuật -->
+            <h2>Thông số kỹ thuật</h2>
+            <table> <!-- table để hiển thị dữ liệu dạng bảng -->
+                <tr>
+                    <th>Thông số</th> <!-- tiêu đề cột -->
+                    <th>Giá trị</th>
+                </tr>
+                <tr>
+                    <td>Màn hình</td> <!-- dữ liệu -->
+                    <td>...</td>
+                </tr>
+            </table>
+        </section>
+        <!-- ĐÁNH GIÁ / BÌNH LUẬN -->
+        <section> <!-- section riêng cho review -->
+            <h2>Đánh giá</h2>
+            <article> <!-- mỗi bình luận là 1 article -->
+                <p><strong>User A</strong></p> <!-- tên người dùng -->
+                <p>Bình luận...</p>
+            </article>
+            <article>
+                <p><strong>User B</strong></p>
+                <p>Bình luận...</p>
+            </article>
+        </section>
+    </main>
+    <!-- SIDEBAR -->
+    <aside> <!-- aside vì là nội dung phụ -->
+        <h3>Sản phẩm tương tự</h3>
+        <ul> <!-- danh sách sản phẩm -->
+            <li><a href="#">Sản phẩm 1</a></li>
+            <li><a href="#">Sản phẩm 2</a></li>
+            <li><a href="#">Sản phẩm 3</a></li>
+        </ul>
+    </aside>
+    <!-- FOOTER -->
+    <footer> <!-- footer cho cuối trang -->
+        <p>© 2026 - Website bán hàng</p>
+    </footer>
+</body>
+</html>
+
+Câu C2:
+Theo em, quan điểm “dùng <div> cho mọi thứ là đủ” nghe thì tiện nhưng về lâu dài lại không tối ưu. Thứ nhất là về SEO: các công cụ tìm kiếm như Google không chỉ đọc nội dung mà còn dựa vào cấu trúc HTML để hiểu trang web. Khi dùng các thẻ semantic như <header>, <main>, <article>, <nav>, bot sẽ dễ xác định đâu là nội dung chính, đâu là menu, từ đó index chính xác hơn. Nếu toàn bộ đều là <div> thì cấu trúc bị “mù nghĩa”, SEO kém hơn.
+Thứ hai là về Accessibility (khả năng truy cập). Các công cụ hỗ trợ như NVDA screen reader hay VoiceOver sẽ dựa vào semantic HTML để đọc trang cho người khiếm thị. Ví dụ, khi dùng <nav>, người dùng có thể nhanh chóng nhảy tới khu điều hướng; hoặc <main> giúp bỏ qua phần header dài. Nếu chỉ dùng <div>, trải nghiệm của họ sẽ rất khó khăn vì không có “mốc” rõ ràng.
+Một ví dụ cụ thể: trang tin tức dùng <article> cho mỗi bài viết. Khi đó, cả Google và screen reader đều hiểu đây là nội dung độc lập, có thể trích xuất, chia sẻ hoặc đọc riêng từng bài. Nếu thay bằng <div>, ý nghĩa này bị mất.
+Tuy nhiên, không phải lúc nào <div> cũng xấu. Trong thực tế, <div> vẫn rất phù hợp để layout hoặc grouping (ví dụ: chia cột, tạo grid, bọc các phần tử để CSS styling). Tóm lại, nên kết hợp: semantic HTML cho cấu trúc ý nghĩa, còn <div> cho trình bày. Như vậy vừa chuẩn, vừa tối ưu lâu dài.
+

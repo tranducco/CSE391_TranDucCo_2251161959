@@ -1,0 +1,17 @@
+.brand {
+    color: blueviolet;
+}
+.nav
+{
+    color: rgb(255, 157, 0);
+}
+#header
+{
+    display: flex;
+    background-color: rgb(220, 200, 167);
+}
+nav ul
+{
+    display: flex;
+    list-style-type: none;
+}

@@ -27,3 +27,24 @@ Thẻ <label for="email"> rất quan trọng vì nó giúp liên kết giữa ph
 trong cùng một phần. Ví dụ, trong form đặt hàng, ta có thể nhóm các trường như tên, số điện thoại, địa chỉ vào một nhóm “Thông tin giao hàng”. Khi đó, <legend> sẽ đóng vai trò là tiêu đề của nhóm. Với screen reader, nó sẽ đọc tiêu đề nhóm trước, sau đó mới đọc từng trường bên trong, giúp người dùng hiểu rõ họ đang nhập thông tin thuộc phần nào. Điều này làm form có cấu trúc rõ ràng hơn và dễ sử dụng hơn.
 3. aria-label dùng khi nào? Vì sao không nên dùng khi đã có <label>?
 aria-label được dùng khi phần tử không có nội dung văn bản hiển thị nhưng vẫn cần mô tả cho screen reader, ví dụ như button chỉ có icon. Khi đó, aria-label sẽ cung cấp tên để screen reader đọc. Tuy nhiên, không nên dùng aria-label khi đã có <label> vì sẽ gây trùng lặp thông tin, làm screen reader có thể đọc lặp lại không cần thiết. Ngoài ra, <label> là thẻ HTML chuẩn mang tính semantic cao, nên luôn được ưu tiên sử dụng trước. Nguyên tắc chung là chỉ dùng ARIA khi không thể giải quyết bằng HTML thuần.
+
+Câu A4:
+- loading="lazy" giúp trình duyệt không tải cái ảnh đó ngay lập tức lúc mới mở web, mà đợi user cuộn chuột (scroll) tới gần chỗ đó mới tải. Nó giúp web load nhanh hơn xịn hơn. KHÔNG nên dùng cho mấy cái ảnh to đùng nằm ở phần đầu tiên của web (Hero banner, logo) vì sẽ làm người dùng thấy hình bị load chậm.
+
+- Nên cung cấp nhiều <source> vì không phải trình duyệt nào (Chrome, Safari, Firefox
+cũ) cũng đọc được cùng 1 định dạng video. Mình đưa nhiều cái, thằng nào xài được chuẩn
+nào thì nó tự lấy chuẩn đó. 3 format web phổ biến là: mp4, webm (đội Google chuộng),
+ogg.
+
+- Thuộc tính alt (Alternative text) dùng để hiện chữ thay thế nếu lỡ mạng lag rớt ảnh, và để Screen reader đọc cho người mù hiểu ảnh đó là gì.
+    - iPhone 16: alt="Điện thoại iPhone 16 Pro Max màu Titan tự nhiên"
+    - Ảnh trang trí: alt="" (Cứ để rỗng để máy đọc nó skip qua, đỡ ồn ào).
+    - Ảnh biểu đồ: alt="Biểu đồ cột doanh thu quý 1 năm 2026, cho thấy mức tăng 15% so với cùng kỳ" (Phải ghi luôn ý nghĩa data biểu đồ).
+
+Câu A5:
+- So sánh <figure> vs <img>
+- Cách 1 (chỉ <img>): Dùng cho mấy ảnh chèn vào cho web đỡ trống, ảnh minh họa chung
+chung hoặc ảnh không cần mô tả. Ví dụ: Ảnh Avatar của user, ảnh Icon nhỏ trên trang.
+- Cách 2 (có <figure> + <figcaption>): Dùng khi hình ảnh mang tính độc lập, có ý nghĩa
+quan trọng và cần dòng chú thích đi kèm rõ ràng. Ví dụ: Ảnh minh họa sản phẩm có ghi giá/khuyến mãi bên dưới, hoặc ảnh biểu đồ trong một bài báo.
+

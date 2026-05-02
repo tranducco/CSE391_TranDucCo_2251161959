@@ -48,3 +48,44 @@ chung hoặc ảnh không cần mô tả. Ví dụ: Ảnh Avatar của user, ả
 - Cách 2 (có <figure> + <figcaption>): Dùng khi hình ảnh mang tính độc lập, có ý nghĩa
 quan trọng và cần dòng chú thích đi kèm rõ ràng. Ví dụ: Ảnh minh họa sản phẩm có ghi giá/khuyến mãi bên dưới, hoặc ảnh biểu đồ trong một bài báo.
 
+Câu C1: 
+- Lỗi 1: Dòng 1 — Thẻ <form> trống trơn, thiếu thuộc tính action và method, vi phạm best practices (form không biết sẽ gửi dữ liệu đi đâu và bằng cách nào).
+Sửa: <form action="#" method="POST">
+
+- Lỗi 2: Dòng 2 — Input "Tên" không có <label for="...">, id, name, vi phạm accessibility và backend sẽ không nhận được dữ liệu.
+Sửa: <label for="name">Tên:</label> <input type="text" id="name" name="name" required>
+
+- Lỗi 3: Dòng 4 — Input "Email" lạm dụng placeholder thay cho thẻ <label>, thiếu id, name và validation required.
+Sửa: <label for="email">Email:</label> <input type="email" id="email" name="email" placeholder="Email của bạn" required>
+
+- Lỗi 4: Dòng 6, 7 — Hai input password thiếu <label>, id, name. Trình duyệt đọc màn hình (screen reader) sẽ không biết ô nào là mật khẩu, ô nào là xác nhận.
+Sửa: <label for="pwd">Mật khẩu:</label> <input type="password" id="pwd" name="pwd" placeholder="Mật khẩu" required>
+<label for="confirm_pwd">Nhập lại mật khẩu:</label> <input type="password" id="confirm_pwd" name="confirm_pwd" placeholder="Nhập lại mật khẩu" required>
+
+- Lỗi 5: Dòng 9 — Input Phone dùng sai type="text" (đúng ra phải là type="tel"). Gán cứng value="0901234567" làm người dùng phải xóa đi mới nhập được, lẽ ra nên dùng placeholder.
+Sửa: <label for="phone">Phone:</label> <input type="tel" id="phone" name="phone" placeholder="0901234567" pattern="[0-9]{10}">
+
+- Lỗi 6: Dòng 11 — Thẻ <select> thiếu <label> mô tả, đồng thời thiếu id và name để định danh dữ liệu gửi đi.
+Sửa: <label for="city">Khu vực:</label> <select id="city" name="city">
+
+- Lỗi 7: Dòng 12, 13 — Các thẻ <option> bên trong select bị thiếu thuộc tính value (vi phạm best practices về chuẩn hóa dữ liệu gửi lên server).
+Sửa: <option value="HN">Hà Nội</option> <option value="HCM">TP.HCM</option>
+
+- Lỗi 8: Dòng 16 đến 18 — Có <label> "Tôi đồng ý điều khoản" nhưng lại... quên viết thẻ <input type="checkbox">. Lỗi này không check được điều khoản luôn.
+Sửa: <label for="terms"><input type="checkbox" id="terms" name="terms" required> Tôi đồng ý điều khoản</label>
+
+Câu C2:
+Pattern Regex:
+- CMND/CCCD (Đúng 12 số): pattern="[0-9]{12}"
+- Số tài khoản (10 đến 15 số): pattern="[0-9]{10,15}"
+
+- HTML5 Validation chưa đủ cho web ngân hàng đâu thầy. Lý do là HTML5 nó chỉ chạy ở phía Client (trên máy của ông user). Một người am hiểu IT chỉ cần nhấn F12 (Inspect Element), xóa cái dòng required hoặc sửa pattern là qua mặt form để submit rác lên hệ thống ngon ơ. Nó chỉ có tác dụng tăng UX (báo lỗi liền tay cho user đỡ chờ) chứ không dùng để bảo mật.
+
+- 3 loại Validation HTML5 "bó tay" phải gọi Javascript ra cứu:
+    So sánh 2 trường với nhau (Ví dụ: Mật khẩu và Nhập lại mật khẩu có giống nhau không).
+    Kiểm tra logic nghiệp vụ phức tạp (Ví dụ: Tuổi phải trên 18 dựa vào ngày sinh tính đến hôm nay).
+    Validate tính tồn tại dữ liệu (Ví dụ: Email này đã có ai đăng ký trong Database chưa).
+
+- Rủi ro bảo mật nếu backend lười không check lại:
+    Bị tấn công SQL Injection hoặc XSS: User cố tình gửi các đoạn code độc hại (script) vào form, nếu backend lưu thẳng vào database rồi in ra màn hình thì web sẽ bị hack.
+    Rác dữ liệu và sập logic: Khách cố tình hack sửa HTML5 gửi lên "Số tiền chuyển khoản" là -10000 (số âm), nếu backend không bắt lỗi lại, tự nhiên hệ thống lại cộng thêm tiền cho tài khoản bị chuyển.

@@ -1,17 +1,32 @@
 .brand {
+    width: 50%;
     color: blueviolet;
+    background-color: seagreen;
 }
 .nav
 {
-    color: rgb(255, 157, 0);
+    width: 70%;
+    color: rgb(0, 51, 255);
+    background-color: rgb(187, 56, 3);
 }
 #header
 {
     display: flex;
-    background-color: rgb(220, 200, 167);
+    margin: 20px;
+    border: 2px solid #0e0f0f;
+    border-radius: 10px;
+    
+
 }
-nav ul
+#header ul
 {
-    display: flex;
+    opacity: 0.2;
     list-style-type: none;
+}
+h1
+{
+    text-align: center;
+    text-shadow: 0rcaps 2px 2px 4px #16bfb4;
+    font-size: 30px;
+    color: rgb(255, 0, 204);
 }

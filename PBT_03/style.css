@@ -1,0 +1,108 @@
+/* 1. Reset & Box-sizing (Dòng đầu tiên bắt buộc) */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* 2. Body Typography & Background */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    line-height: 1.6;
+    padding-bottom: 50px;
+}
+
+/* 3. Header Styling (Gradient & White text) */
+header {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: white;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* 4. Navigation Links */
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Mặc định: không gạch chân, màu cụ thể */
+nav ul li a {
+    text-decoration: none;
+    color: #e0e0e0;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+/* Hover: đổi màu + gạch chân */
+nav ul li a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+/* Link đang active: kiểu khác biệt */
+nav ul li a.active {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 5px 15px;
+    border-radius: 20px;
+    color: #fff;
+}
+
+/* 5. Main Content Spacing */
+main, aside {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+}
+
+/* 6. Table Kỹ năng styling */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Yêu cầu border-collapse */
+    margin-top: 20px;
+}
+
+table th, table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+/* Header row: background đậm, text trắng */
+thead tr {
+    background-color: #1e3c72;
+    color: white;
+}
+
+/* Zebra striping: dùng tr:nth-child(even) */
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Hover row: đổi background */
+tbody tr:hover {
+    background-color: #d1d9e6;
+}
+
+/* 7. Footer Styling */
+footer {
+    background-color: #222; /* Background đậm */
+    color: #bbb;            /* Text nhạt */
+    text-align: center;     /* Center */
+    padding: 20px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* 8. Specific ID Selector cho Aside */
+#Lien-he {
+    border-top: 3px solid #1e3c72;
+}

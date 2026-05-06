@@ -91,3 +91,53 @@ Vì tổng 3 cột (1100px) lớn hơn kích thước của container (1000px), 
 #### 4. Thay đổi thứ tự rules trong CSS file. Kết quả có đổi không? Giải thích.
 - **Kết quả:** **KHÔNG ĐỔI**.
 - **Giải thích:** Thứ tự xuất hiện (Cascade/Source order) trong file CSS **chỉ có ý nghĩa khi các rule có cùng mức điểm Specificity**. Trong bài tập này, cả 10 rule đều có điểm số Specificity hoàn toàn khác biệt nhau. Vì vậy, trình duyệt luôn luôn chọn rule có điểm cao nhất (1,2,1 - màu đỏ) để áp dụng, bất kể bạn đặt nó ở dòng đầu tiên hay dòng cuối cùng trong file `specificity.css`.
+
+Câu C1:
+---
+### 1. Tính chiều rộng thực tế của sidebar và content
+Theo mặc định, trình duyệt sử dụng mô hình `box-sizing: content-box`. Nghĩa là thuộc tính `width` bạn set chỉ là chiều rộng của *nội dung*, phần `padding` và `border` sẽ bị cộng thêm vào bên ngoài, làm cho phần tử phình to ra.
+
+Công thức tính chiều rộng thực tế (Total Width) = `width` + `padding-left` + `padding-right` + `border-left` + `border-right`.
+
+*   **Chiều rộng thực tế của Sidebar:** 300px + 20px (trái) + 20px (phải) + 1px (trái) + 1px (phải) = **342px**
+*   **Chiều rộng thực tế của Content:** 660px + 30px (trái) + 30px (phải) + 1px (trái) + 1px (phải) = **722px**
+
+### 2. Giải thích tại sao layout bị vỡ
+Để `sidebar` và `content` nằm cạnh nhau trên cùng một hàng (nhờ `float: left`), tổng chiều rộng thực tế của chúng không được vượt quá chiều rộng của thẻ bọc ngoài (`.container`).
+
+*   Tổng chiều rộng thực tế 2 khối: 342px + 722px = **1064px**
+*   Chiều rộng của `.container`: **960px**
+
+Vì **1064px > 960px**, không có đủ không gian trong container, nên phần tử đứng sau (`.content`) buộc phải bị đẩy xuống dòng mới (rớt dòng), gây vỡ layout.
+
+### 3. Đưa ra 2 cách sửa khác nhau
+
+*   **Cách 1: Sử dụng `box-sizing: border-box`**
+    Đây là cách hiện đại và được khuyên dùng nhất. Khi thêm thuộc tính này, `padding` và `border` sẽ đẩy ngược vào bên trong thay vì phình ra ngoài. Lúc này `width: 300px` thực sự sẽ chiếm đúng 300px trên màn hình.
+*   **Cách 2: Không dùng border-box (Trừ hao chiều rộng thủ công)**
+    Vẫn giữ nguyên mô hình `content-box` mặc định, nhưng ta phải tự tính toán và trừ hao đi phần padding và border vào thuộc tính `width`.
+    *   Sidebar mới: 300px - 40px (padding) - 2px (border) = `width: 258px;`
+    *   Content mới: 660px - 60px (padding) - 2px (border) = `width: 598px;`
+
+
+Câu C2:
+---
+### 1. Trả lời và giải thích chi tiết
+
+Dựa vào các quy tắc về Độ ưu tiên (Specificity), Kế thừa (Inheritance) và Cascade trong CSS, dưới đây là kết quả và giải thích:
+
+**1. "Sản phẩm A" (h2) có `font-size` = 20px và `color` = green**
+*   **Font-size (20px):** Phần tử này chịu tác động của rule `.card .title { font-size: 20px; }`. Nó cũng nằm trong `.container` (font-size: 14px) và `body` (16px), nhưng rule định nghĩa trực tiếp trên class `.card .title` có độ ưu tiên (specificity) cao hơn việc kế thừa.
+*   **Color (green):** Thẻ `h2` này có class `.highlight` và nằm trong ID `#featured`. CSS có rule `#featured .title { color: red; }` (có chứa ID nên độ ưu tiên rất cao). Tuy nhiên, rule `.highlight { color: green !important; }` có chứa cờ `!important`. Trong CSS, `!important` phá vỡ mọi quy tắc ưu tiên thông thường và sẽ ghi đè lên tất cả, do đó màu cuối cùng là xanh lá (green).
+
+**2. "Mô tả sản phẩm" (p trong card featured) có `color` = blue**
+*   **Color (blue):** Thẻ `<p>` này bị tác động bởi rule `.card p { color: inherit; }`. Thuộc tính `inherit` bắt buộc phần tử này phải lấy (kế thừa) giá trị màu từ phần tử cha trực tiếp của nó. Phần tử cha là `<div class="card" id="featured">` đang mang màu xanh dương do rule `.card { color: blue; }` áp đặt lên. Vì vậy, thẻ `<p>` nhận màu blue.
+
+**3. "Sản phẩm B" (h2) có `font-size` = 20px và `color` = blue**
+*   **Font-size (20px):** Tương tự như Sản phẩm A, nó chịu tác động của rule `.card .title { font-size: 20px; }`.
+*   **Color (blue):** Không có rule nào cài đặt màu trực tiếp cho thẻ `h2` này (nó không có class `.highlight` và phần tử cha không có ID `#featured`). Theo cơ chế kế thừa tự nhiên của CSS, văn bản sẽ lấy màu từ phần tử bọc nó. Phần tử cha của nó là `<div class="card">` có màu `blue` (do rule `.card { color: blue; }`), nên chữ "Sản phẩm B" kế thừa màu blue.
+
+**4. "Mô tả sản phẩm B" (p.highlight) có `color` = green**
+*   **Color (green):** Thẻ `<p>` này có class `highlight`, do đó nó chịu tác động của cả 2 rule: `.card p { color: inherit; }` và `.highlight { color: green !important; }`. Tương tự như câu 1, cờ `!important` có quyền lực tối cao, chiến thắng quy tắc ưu tiên thông thường. Do đó, màu được áp dụng là green.
+### 2. File kiểm chứng (HTML + CSS)
+ảnh index_test.png

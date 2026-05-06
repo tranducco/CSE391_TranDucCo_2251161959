@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug CSS Layout</title>
+    <link rel="stylesheet" href="debug_layout.css">
+</head>
+<body>
+    <h2>Cách 1: Dùng box-sizing: border-box</h2>
+    <div class="container clearfix">
+        <div class="sidebar fix-method-1">Sidebar (Method 1)</div>
+        <div class="content fix-method-1">Content (Method 1)</div>
+    </div>
+
+    <h2>Cách 2: Tính toán trừ hao thủ công (Không dùng border-box)</h2>
+    <div class="container clearfix">
+        <div class="sidebar fix-method-2">Sidebar (Method 2)</div>
+        <div class="content fix-method-2">Content (Method 2)</div>
+    </div>
+</body>
+</html>

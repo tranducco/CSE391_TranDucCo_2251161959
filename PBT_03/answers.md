@@ -1,4 +1,5 @@
 Câu A1: 
+---
 1. Inline CSS (Nhúng trực tiếp)
 - Ví dụ: <h1 style="color: blue;">Hello</h1>
 - Ưu điểm: Nhanh, độ ưu tiên cao nhất để ghi đè (override).
@@ -20,7 +21,6 @@ Câu A1:
 * Trả lời câu hỏi thêm: "Inline CSS" thắng vì nó có độ ưu tiên (specificity) cao nhất trong 3 cách.
 
 Câu A2: 
-### Câu A2: CSS Selectors - Dự đoán kết quả
 ---
 1. h1                   → Chọn: "ShopTLU"
 2. .price               → Chọn: "25.990.000đ" và "45.990.000đ"
@@ -32,7 +32,6 @@ Câu A2:
 8. .top-bar.dark h1     → Chọn: "ShopTLU"
 
 Câu A3: 
-### Câu A3: Box Model - Tính toán kích thước
 ---
 Trường hợp 1: content-box
 - Chiều rộng hiển thị = 400 (width) + 40 (padding) + 10 (border) = 450px
@@ -65,3 +64,30 @@ Câu B2:
 
 **=> Tổng kích thước 3 cột trên giao diện:** 280px + 540px + 280px = **1100px**.
 Vì tổng 3 cột (1100px) lớn hơn kích thước của container (1000px), layout sẽ bị vỡ (tràn ra ngoài nếu dùng flexbox, hoặc bị rớt xuống dòng nếu dùng float). Bắt buộc phải thêm `box-sizing: border-box` để layout vừa vặn chính xác 1000px. 
+
+### Bài B3 — Specificity Battle
+
+#### 1. Liệt kê 10 rules + specificity score (Từ thấp đến cao)
+| STT | CSS Selector | Specificity Score (ID, Class, Element) |
+| :--- | :--- | :--- |
+| 1 | `*` | 0,0,0 |
+| 2 | `p` | 0,0,1 |
+| 3 | `.text` | 0,1,0 |
+| 4 | `.text.highlight` | 0,2,0 |
+| 5 | `p.text.highlight` | 0,2,1 |
+| 6 | `#demo` | 1,0,0 |
+| 7 | `p#demo` | 1,0,1 |
+| 8 | `#demo.text` | 1,1,0 |
+| 9 | `#demo.text.highlight` | 1,2,0 |
+| 10 | `p#demo.text.highlight` | 1,2,1 |
+
+#### 2. Element cuối cùng hiển thị màu gì? Tại sao?
+- **Màu hiển thị:** **Màu đỏ (red)**.
+- **Tại sao:** Trình duyệt áp dụng quy tắc CSS dựa trên độ ưu tiên (Specificity). Trong 10 quy tắc trên, bộ chọn `p#demo.text.highlight` có điểm specificity cao nhất là **1,2,1** (bao gồm 1 ID, 2 Classes và 1 Element). Do đó, màu của nó sẽ "chiến thắng" và ghi đè tất cả các quy tắc còn lại.
+
+#### 3. Chụp screenshot kết quả
+ảnh specificity.png
+
+#### 4. Thay đổi thứ tự rules trong CSS file. Kết quả có đổi không? Giải thích.
+- **Kết quả:** **KHÔNG ĐỔI**.
+- **Giải thích:** Thứ tự xuất hiện (Cascade/Source order) trong file CSS **chỉ có ý nghĩa khi các rule có cùng mức điểm Specificity**. Trong bài tập này, cả 10 rule đều có điểm số Specificity hoàn toàn khác biệt nhau. Vì vậy, trình duyệt luôn luôn chọn rule có điểm cao nhất (1,2,1 - màu đỏ) để áp dụng, bất kể bạn đặt nó ở dòng đầu tiên hay dòng cuối cùng trong file `specificity.css`.

@@ -1,0 +1,29 @@
+/* 1. Universal Selector */
+* { color: gray; }                            /* Specificity: 0,0,0 */
+
+/* 2. Element Selector */
+p { color: pink; }                            /* Specificity: 0,0,1 */
+
+/* 3. Class Selector (1 class) */
+.text { color: blue; }                        /* Specificity: 0,1,0 */
+
+/* 4. Class Selector (2 classes kết hợp) */
+.text.highlight { color: purple; }            /* Specificity: 0,2,0 */
+
+/* 5. Element + 2 Classes */
+p.text.highlight { color: orange; }           /* Specificity: 0,2,1 */
+
+/* 6. ID Selector */
+#demo { color: yellow; }                      /* Specificity: 1,0,0 */
+
+/* 7. Element + ID */
+p#demo { color: cyan; }                       /* Specificity: 1,0,1 */
+
+/* 8. ID + 1 Class */
+#demo.text { color: brown; }                  /* Specificity: 1,1,0 */
+
+/* 9. ID + 2 Classes */
+#demo.text.highlight { color: green; }        /* Specificity: 1,2,0 */
+
+/* 10. Element + ID + 2 Classes */
+p#demo.text.highlight { color: red; }         /* Specificity: 1,2,1 */

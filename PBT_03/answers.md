@@ -37,3 +37,28 @@ Giải thích:
 - Inline CSS luôn có độ ưu tiên cao nhất vì nó nằm trực tiếp bên trong phần tử.
 - Giữa Internal và External, nếu độ ưu tiên bằng nhau, trình duyệt sẽ chọn quy tắc nào được đọc sau cùng (thứ tự từ trên xuống dưới trong file HTML). Thông thường, External CSS được đặt trong <head>, nên nếu Internal CSS nằm phía dưới thẻ <link>, nó sẽ ghi đè External CSS.
 - Việc sử dụng !important có thể phá vỡ mọi quy tắc ưu tiên trên, nhưng tài liệu khuyến cáo đây là một "anti-pattern" (thói quen xấu) nên tránh sử dụng vì sẽ cực kỳ khó debug về sau.
+
+Câu A2: 
+1. h1
+Chọn: ShopTLU
+
+2. .price (Chọn tất cả các element có class là price)
+Chọn: 25.990.000đ và 45.990.000đ
+
+3. #app header (Chọn element header nằm bên trong element có id là app)
+Chọn: Toàn bộ nội dung trong header bao gồm: ShopTLU, Home, Products, About
+
+4. nav a:first-child (Chọn thẻ a đầu tiên nằm trong thẻ nav)
+Chọn: Home
+
+5. .product.featured h2 (Chọn thẻ h2 nằm trong element có đồng thời cả 2 class là product và featured)
+Chọn: MacBook Pro
+
+6. article > p (Chọn các thẻ p là con trực tiếp của thẻ article)
+Chọn: 25.990.000đ, Mô tả sản phẩm... (của iPhone 16) và 45.990.000đ, Mô tả sản phẩm... (của MacBook Pro)
+
+7. a[href="/"] (Chọn thẻ a có thuộc tính href chính xác là "/")
+Chọn: Home
+
+8. .top-bar.dark h1 (Chọn thẻ h1 nằm trong element có cả 2 class top-bar và dark)
+Chọn: ShopTLU

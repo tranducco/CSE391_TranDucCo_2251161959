@@ -1,108 +1,95 @@
-/* 1. Reset & Box-sizing (Dòng đầu tiên bắt buộc) */
-* {
-    box-sizing: border-box;
+* { box-sizing: border-box; }
+
+/* 1. Element Selector - Định dạng Body */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f8f9fa;
+    color: #333333;
+    line-height: 1.6;
     margin: 0;
     padding: 0;
 }
 
-/* 2. Body Typography & Background */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f7f6;
-    color: #333;
-    line-height: 1.6;
-    padding-bottom: 50px;
-}
-
-/* 3. Header Styling (Gradient & White text) */
+/* 2. Định dạng Header */
 header {
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    background: linear-gradient(135deg, #0056b3, #00aaff);
     color: white;
-    padding: 30px;
+    padding: 25px; /* Lớn hơn 20px theo yêu cầu */
     text-align: center;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
-/* 4. Navigation Links */
-nav ul {
-    list-style: none;
+/* 3. Descendant Selector - Định dạng Navigation Links */
+header nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 30px;
 }
 
-/* Mặc định: không gạch chân, màu cụ thể */
-nav ul li a {
-    text-decoration: none;
-    color: #e0e0e0;
+header nav a {
+    text-decoration: none; /* Mặc định không gạch chân */
+    color: #e0e0e0; /* Màu cụ thể mặc định */
     font-weight: bold;
-    transition: 0.3s;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
 }
 
-/* Hover: đổi màu + gạch chân */
-nav ul li a:hover {
-    color: #ffffff;
+/* Pseudo-class - Trạng thái Hover của Link */
+header nav a:hover {
+    color: #ffffff; /* Đổi màu */
+    text-decoration: underline; /* Thêm gạch chân */
+}
+
+/* 4. Class Selector - Trạng thái Active của Link */
+header nav a.active {
+    color: #ffdd00; /* Kiểu khác biệt (Màu vàng) */
     text-decoration: underline;
 }
 
-/* Link đang active: kiểu khác biệt */
-nav ul li a.active {
-    background-color: rgba(255, 255, 255, 0.2);
-    padding: 5px 15px;
-    border-radius: 20px;
-    color: #fff;
-}
-
-/* 5. Main Content Spacing */
-main, aside {
-    max-width: 900px;
+/* 5. ID Selector - Căn chỉnh layout cơ bản cho các vùng */
+#Ve-toi, #Ky-nang, #Lien-he {
+    max-width: 800px;
     margin: 20px auto;
-    padding: 20px;
-    background: white;
-    border-radius: 8px;
+    padding: 0 20px;
 }
 
-/* 6. Table Kỹ năng styling */
+/* 6. Định dạng Table kỹ năng */
 table {
     width: 100%;
-    border-collapse: collapse; /* Yêu cầu border-collapse */
-    margin-top: 20px;
+    border-collapse: collapse; /* Bắt buộc theo yêu cầu */
+    margin-top: 15px;
+    background-color: #ffffff;
 }
 
-table th, table td {
+th, td {
+    border: 1px solid #dee2e6;
     padding: 12px;
     text-align: left;
-    border: 1px solid #ddd;
 }
 
-/* Header row: background đậm, text trắng */
-thead tr {
-    background-color: #1e3c72;
-    color: white;
+/* Header row của bảng */
+th {
+    background-color: #343a40; /* Background đậm */
+    color: #ffffff; /* Text trắng */
 }
 
-/* Zebra striping: dùng tr:nth-child(even) */
-tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
+/* Pseudo-class - Zebra striping (Hàng chẵn đổi màu) */
+tr:nth-child(even) {
+    background-color: #f2f2f2; 
 }
 
-/* Hover row: đổi background */
-tbody tr:hover {
-    background-color: #d1d9e6;
+/* Pseudo-class - Hover row (Đổi màu khi trỏ chuột vào hàng) */
+tr:hover {
+    background-color: #cce5ff;
 }
 
-/* 7. Footer Styling */
+/* 7. Định dạng Footer */
 footer {
-    background-color: #222; /* Background đậm */
-    color: #bbb;            /* Text nhạt */
-    text-align: center;     /* Center */
-    padding: 20px 0;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
-
-/* 8. Specific ID Selector cho Aside */
-#Lien-he {
-    border-top: 3px solid #1e3c72;
+    background-color: #212529; /* Background đậm */
+    color: #ced4da; /* Text nhạt */
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 40px;
 }

@@ -1,64 +1,48 @@
 Câu A1: 
-1. Inline CSS (Nhúng trực tiếp vào thuộc tính style)
-Ví dụ code:
-<h1 style="color: #2563eb; font-size: 32px;">Tiêu đề xanh</h1>
-- Ưu điểm & Nhược điểm:
-    + Ưu điểm: Nhanh chóng, có độ ưu tiên cao nhất, hữu ích khi muốn ghi đè (override) tạm thời.
-    + Nhược điểm: Khó tái sử dụng, khó bảo trì, làm mã HTML trở nên rối rắm và không thể tận dụng bộ nhớ đệm (caching) của trình duyệt.
-- Khi nào nên dùng: Chỉ dùng cho các trường hợp khẩn cấp, ghi đè tạm thời hoặc khi cần can thiệp style bằng JavaScript một cách trực tiếp.
+1. Inline CSS (Nhúng trực tiếp)
+- Ví dụ: <h1 style="color: blue;">Hello</h1>
+- Ưu điểm: Nhanh, độ ưu tiên cao nhất để ghi đè (override).
+- Nhược điểm: Khó quản lý, không tái sử dụng được code, làm rối file HTML.
+- Khi nào dùng: Khi cần fix nhanh hoặc style động bằng JavaScript.
 
-2. Internal CSS (Sử dụng thẻ <style>)
-Ví dụ code:
-<head>
-  <style>
-    h1 { color: #2563eb; font-size: 32px; }
-  </style>
-</head>
-- Ưu điểm & Nhược điểm:
-    + Ưu điểm: Quản lý tập trung các style của một trang duy nhất, không cần gửi thêm request HTTP để tải file riêng.
-    + Nhược điểm: Chỉ có tác dụng trên một trang web cụ thể, không thể dùng chung cho toàn bộ website, làm tăng dung lượng file HTML.
-- Khi nào nên dùng: Dùng cho các bản mẫu (prototype) hoặc các trang web đơn lẻ (Single Page) có phong cách thiết kế riêng biệt.
+2. Internal CSS (Dùng thẻ <style>)
+- Ví dụ: <style> h1 { color: blue; } </style>
+- Ưu điểm: Quản lý tập trung style của một trang duy nhất.
+- Nhược điểm: Chỉ có tác dụng trên 1 file HTML, làm file HTML nặng hơn.
+- Khi nào dùng: Trang đơn (Landing Page) hoặc khi chỉ cần style riêng cho 1 trang.
 
-3. External CSS (Sử dụng file .css riêng biệt)
-- Ví dụ code:
-<head>
-  <link rel="stylesheet" href="styles.css">
-</head>
-/* Trong file styles.css */
-h1 { color: #2563eb; font-size: 32px; }
-- Ưu điểm & Nhược điểm:
-    + Ưu điểm: Tách biệt hoàn toàn nội dung và giao diện, dễ bảo trì, tái sử dụng được cho nhiều trang, giúp trình duyệt tải nhanh hơn nhờ cơ chế caching.
-    + Nhược điểm: Cần thêm một request HTTP để tải file (tuy nhiên điều này không còn là vấn đề lớn với công nghệ hiện nay).
-- Khi nào nên dùng: Đây là chuẩn Production, được khuyến khích sử dụng cho mọi dự án thực tế.
+3. External CSS (Dùng file .css riêng)
+- Ví dụ: <link rel="stylesheet" href="style.css">
+- Ưu điểm: Tái sử dụng cho toàn website, dễ bảo trì, trình duyệt có thể cache giúp tải nhanh hơn.
+- Nhược điểm: Tốn thêm 1 request HTTP để tải file.
+- Khi nào dùng: Cách chuẩn mực cho mọi dự án thực tế.
 
-- Nếu cùng một element áp dụng cả 3 cách, Inline CSS sẽ "thắng" (được ưu tiên hiển thị).
-Giải thích:
-- Trong CSS, các quy tắc được áp dụng dựa trên độ ưu tiên (Specificity) và thứ tự xuất hiện.
-- Inline CSS luôn có độ ưu tiên cao nhất vì nó nằm trực tiếp bên trong phần tử.
-- Giữa Internal và External, nếu độ ưu tiên bằng nhau, trình duyệt sẽ chọn quy tắc nào được đọc sau cùng (thứ tự từ trên xuống dưới trong file HTML). Thông thường, External CSS được đặt trong <head>, nên nếu Internal CSS nằm phía dưới thẻ <link>, nó sẽ ghi đè External CSS.
-- Việc sử dụng !important có thể phá vỡ mọi quy tắc ưu tiên trên, nhưng tài liệu khuyến cáo đây là một "anti-pattern" (thói quen xấu) nên tránh sử dụng vì sẽ cực kỳ khó debug về sau.
+* Trả lời câu hỏi thêm: "Inline CSS" thắng vì nó có độ ưu tiên (specificity) cao nhất trong 3 cách.
 
 Câu A2: 
-1. h1
-Chọn: ShopTLU
+### Câu A2: CSS Selectors - Dự đoán kết quả
+---
+1. h1                   → Chọn: "ShopTLU"
+2. .price               → Chọn: "25.990.000đ" và "45.990.000đ"
+3. #app header          → Chọn: Cụm Header chứa "ShopTLU" và các thẻ "nav"
+4. nav a:first-child    → Chọn: "Home"
+5. .product.featured h2 → Chọn: "MacBook Pro"
+6. article > p          → Chọn: "25.990.000đ", "Mô tả sản phẩm..." (của cả 2 máy)
+7. a[href="/"]          → Chọn: "Home"
+8. .top-bar.dark h1     → Chọn: "ShopTLU"
 
-2. .price (Chọn tất cả các element có class là price)
-Chọn: 25.990.000đ và 45.990.000đ
+Câu A3: 
+### Câu A3: Box Model - Tính toán kích thước
+---
+Trường hợp 1: content-box
+- Chiều rộng hiển thị = 400 (width) + 40 (padding) + 10 (border) = 450px
+- Không gian chiếm trên trang = 450 (hiển thị) + 20 (margin) = 470px
 
-3. #app header (Chọn element header nằm bên trong element có id là app)
-Chọn: Toàn bộ nội dung trong header bao gồm: ShopTLU, Home, Products, About
+Trường hợp 2: border-box
+- Chiều rộng hiển thị = 400px (Bằng đúng width khai báo)
+- Kích thước content thực tế = 400 - 40 (padding) - 10 (border) = 350px
+- Không gian chiếm trên trang = 400 (hiển thị) + 20 (margin) = 420px
 
-4. nav a:first-child (Chọn thẻ a đầu tiên nằm trong thẻ nav)
-Chọn: Home
-
-5. .product.featured h2 (Chọn thẻ h2 nằm trong element có đồng thời cả 2 class là product và featured)
-Chọn: MacBook Pro
-
-6. article > p (Chọn các thẻ p là con trực tiếp của thẻ article)
-Chọn: 25.990.000đ, Mô tả sản phẩm... (của iPhone 16) và 45.990.000đ, Mô tả sản phẩm... (của MacBook Pro)
-
-7. a[href="/"] (Chọn thẻ a có thuộc tính href chính xác là "/")
-Chọn: Home
-
-8. .top-bar.dark h1 (Chọn thẻ h1 nằm trong element có cả 2 class top-bar và dark)
-Chọn: ShopTLU
+Trường hợp 3: Margin collapse
+- Khoảng cách giữa box-a và box-b = 40px
+- Giải thích: Vì đây là hiện tượng gộp lề dọc (Margin Collapse), trình duyệt sẽ chọn giá trị LỚN NHẤT giữa hai margin cạnh nhau (40px > 25px) chứ không cộng dồn chúng lại.

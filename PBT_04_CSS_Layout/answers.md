@@ -39,6 +39,10 @@ Câu A3:
 
 Tạo file `positioning.html` + `positioning.css`.
 
+### Bài B2 (20đ) — Flexbox Navigation & Cards
+
+Tạo file `flexbox_layout.html` + `flexbox.css`.
+
 
 
 

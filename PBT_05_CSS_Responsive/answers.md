@@ -40,4 +40,18 @@
 ```
 - Mobile_first được khuyên dùng vì: mobile tải ít CSS hơn, không phải xử lý các style phức tạp của desktop, buộc lập trình viên ưu tiên những gì quan trọng nhất cho không gian hẹp, SEO 
 
+### Câu A2: 
+### Breakpoints chuẩn
+
+| Tên | Min-width | Thiết bị điển hình | Số cột sản phẩm (Ví dụ)|
+|---|---|---|---|
+| **Mobile** | < 576px | iPhone SE, các điện thoại nhỏ |1|
+| **Mobile L** | ≥ 576px | iPhone Plus, điện thoại ngang |2|
+| **Tablet** | ≥ 768px | iPad dọc, tablet |2|
+| **Desktop** | ≥ 992px | Laptop nhỏ |3|
+| **Desktop L** | ≥ 1200px | Desktop, laptop lớn |4|
+| **Desktop XL** | ≥ 1400px | Màn hình 4K, ultrawide |5/6|
+
+---
+
 

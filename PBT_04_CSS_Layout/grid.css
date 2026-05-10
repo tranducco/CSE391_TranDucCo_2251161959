@@ -1,0 +1,159 @@
+/* --- Reset --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: #f0f2f5;
+}
+
+/* --- Layout chính dùng CSS Grid --- */
+.grid-container {
+    display: grid;
+    /* Cột: Sidebar 200px | Main co giãn | Ads 200px */
+    grid-template-columns: 200px 1fr 200px;
+    /* Hàng: Tự động theo nội dung */
+    grid-template-rows: auto auto 1fr auto;
+    
+    /* Bonus: Named Areas */
+    grid-template-areas: 
+        "header  header  header"
+        "hero    hero    hero"
+        "sidebar main    ads"
+        "footer  footer  footer";
+    
+    gap: 20px;
+    max-width: 1300px;
+    margin: 0 auto;
+    min-height: 100vh;
+}
+
+/* Định nghĩa vị trí các vùng */
+.header  { grid-area: header; }
+.hero    { grid-area: hero; }
+.sidebar { grid-area: sidebar; }
+.main-content { grid-area: main; }
+.ads     { grid-area: ads; }
+.footer  { grid-area: footer; }
+
+/* --- Styling Header --- */
+.header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 20px 40px;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header span { color: #3498db; }
+
+/* --- Styling Hero Banner --- */
+.hero {
+    background: linear-gradient(135deg, #3498db, #8e44ad);
+    color: white;
+    padding: 40px;
+    border-radius: 8px;
+    display: grid;
+    /* Bonus: Hero nội bộ cũng dùng grid */
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+.hero-main {
+    grid-column: span 2; /* Chiếm 2 phần diện tích hero */
+}
+
+.hero-featured {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 8px;
+    border: 2px dashed #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* --- Styling Sidebar & Ads --- */
+.sidebar, .ads {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.filter-group {
+    margin-top: 20px;
+}
+
+.filter-group label {
+    display: block;
+    margin: 8px 0;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.ad-banner img {
+    width: 100%;
+    margin-top: 15px;
+    border-radius: 4px;
+}
+
+/* --- Styling Main Content (Sub-grid) --- */
+.product-grid {
+    display: grid;
+    /* 3 cột cho sản phẩm */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.product-card {
+    background-color: #fff;
+    height: 250px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ddd;
+    transition: 0.3s;
+}
+
+.product-card:hover {
+    border-color: #3498db;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transform: scale(1.02);
+}
+
+/* --- Styling Footer --- */
+.footer {
+    background-color: #2c3e50;
+    color: #bdc3c7;
+    padding: 30px;
+    text-align: center;
+    font-size: 14px;
+}
+
+/* --- Responsive cơ bản --- */
+@media (max-width: 900px) {
+    .grid-container {
+        /* Chuyển về 1 cột trên mobile */
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "header"
+            "hero"
+            "main"
+            "sidebar"
+            "ads"
+            "footer";
+    }
+    
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

@@ -44,5 +44,23 @@ Tạo file `positioning.html` + `positioning.css`.
 Tạo file `flexbox_layout.html` + `flexbox.css`.
 
 
+## PHẦN C — SUY LUẬN (20 điểm)
+
+### Câu C1 (10đ) — Flexbox vs Grid: Khi nào dùng gì?
+
+Cho 5 tình huống layout thực tế. Với mỗi tình huống, trả lời: dùng **Flexbox**, **Grid**, hay **kết hợp cả hai**? Giải thích ngắn gọn tại sao.
+
+1. Navigation bar ngang (logo + menu + buttons)
+- chọn flexbox vì navbar là layout 1 chiều theo hàng ngang. Flexbox giúp căn giữa, giãn khoảng cách (justify-content), và sắp xếp item linh hoạt rất dễ
+2. Lưới ảnh Instagram (3 cột đều nhau, số ảnh không biết trước)
+- chọn grid vì đây là layout 2 chiều (hàng + cột). CSS Grid giúp chia đều 3 cột và tự động xuống hàng khi thêm ảnh mới
+3. Layout blog: main content + sidebar
+- chọn grid vì cần chia bố cục rõ ràng thành nhiều vùng: content chính và sidebar
+4. Footer với 4 cột thông tin (Về chúng tôi, Liên kết, Hỗ trợ, Liên hệ)
+- chọn grid vì footer thường là bố cục nhiều cột đều nhau. Grid giúp tạo 4 cột ổn định và responsive dễ hơn
+5. Card sản phẩm (ảnh trên, text giữa, nút dưới — nút luôn dính đáy)
+- chọn kết hợp vì dùng Flexbox theo chiều dọc (flex-direction: column) để: ảnh ở trên, 
+nội dung ở giữa, nút luôn nằm dưới cùng (margin-top: auto)
+
 
 

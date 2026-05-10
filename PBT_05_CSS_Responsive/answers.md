@@ -65,6 +65,59 @@
 | 1400px | 1140px |
 
 ### Câu A4: 
+Đọc chương 16. Giải thích 4 tính năng chính của SCSS và cho ví dụ:
+1. Variables (`$primary-color`)
+- Giúp lưu trữ các giá trị (màu sắc, font chữ, khoảng cách) vào một cái tên gợi nhớ để tái sử dụng. Khi cần thay đổi, bạn chỉ cần sửa một nơi duy nhất. Ví dụ:
+```
+$primary-color: #7c3aed;
+$spacing-lg: 24px;
+
+.button {
+    background-color: $primary-color;
+    padding: $spacing-lg;
+}
+```
+2. Nesting (viết CSS lồng nhau)
+- Cho phép viết các selector con bên trong selector cha, giúp cấu trúc file CSS trông giống với cấu trúc phân cấp của HTML, dễ đọc và quản lý hơn. Ví dụ:
+```
+.navbar {
+    background: black;
+    .nav-item {
+        display: inline-block;
+        &:hover { color: $primary-color; } // & đại diện cho .nav-item
+    }
+}
+```
+3. Mixins (`@mixin`, `@include`)
+- Đóng vai trò như một "hàm" trong CSS. Bạn định nghĩa một nhóm các thuộc tính bằng @mixin và gọi lại chúng bằng @include. Mixin cực kỳ hữu ích cho các đoạn code lặp lại nhiều lần hoặc xử lý responsive. Ví dụ:
+```
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    @include flex-center;
+}
+```
+4. `@extend` / Inheritance
+- Cho phép một selector chia sẻ (kế thừa) lại toàn bộ các thuộc tính của một selector khác. Điều này giúp giảm thiểu việc lặp lại code và giữ cho CSS gọn gàng. Ví dụ: 
+```
+.message-shared { border: 1px solid #ccc; padding: 10px; }
+
+.success {
+    @extend .message-shared;
+    border-color: green;
+}
+```
+Tại sao trình duyệt KHÔNG đọc được file `.scss`?
+- Vì trình duyệt được thiết kế để hiểu cấu trúc css chuẩn , scss chứa các kí tự và cấu trúc đặc biệt (@,$, lồng nhau) nên trình duyệt không thể đọc được file scss
+
+Cần bước gì để chuyển SCSS → CSS?
+- Compilation (Biên dịch) cần sử dụng một công cụ (Compiler) để quét file SCSS và "dịch" nó sang file CSS thuần. 
+
+
 
 
 

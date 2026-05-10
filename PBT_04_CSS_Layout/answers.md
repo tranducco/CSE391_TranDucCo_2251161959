@@ -62,5 +62,59 @@ Cho 5 tình huống layout thực tế. Với mỗi tình huống, trả lời: 
 - chọn kết hợp vì dùng Flexbox theo chiều dọc (flex-direction: column) để: ảnh ở trên, 
 nội dung ở giữa, nút luôn nằm dưới cùng (margin-top: auto)
 
+## Câu C2 (10đ) — Debug Flexbox
+
+Layout sau bị lỗi. Mô tả lỗi và sửa.
+## Lỗi 1: Cards không đều chiều cao — nút "Mua" bị nhảy lên xuống
+### Nguyên nhân:
+- Các card có lượng text khác nhau nên chiều cao mỗi card khác nhau.
+Nút .btn nằm ngay sau nội dung nên bị lệch lên/xuống.
+### Code sửa: 
+    .card-container {
+        display: flex; flex-wrap: wrap;
+    }
+    .card {
+        width: 30%; margin: 1.5%; display: flex; flex-direction: column;
+    }
+    .card img {
+        width: 100%;
+    }
+    .card h3 {
+        font-size: 18px;
+    }
+    .card .btn { 
+        padding: 10px; margin-top: auto;
+    }
+Ảnh chạy thực tế lỗi 1 trước và sau: loi1C2.png
+
+## Lỗi 2: Item không nằm giữa màn hình
+### Nguyên nhân: display: flex chỉ bật Flexbox, nhưng chưa căn giữa.
+### Code sửa:
+    .hero-fixed {
+            height: 40vh;
+            display: flex;
+            /* Cốt lõi sửa lỗi */
+            justify-content: center;
+            align-items: center;
+            background: #e8f8f5; border: 2px dashed #2ecc71;
+        }
+Ảnh chạy thực tế Lỗi 2 trước và sau: Loi2C2.png
+
+## Lỗi 3: Sidebar bị co lại
+### Nguyên nhân: Trong Flexbox, item mặc định có flex-shrink: 1 nên sidebar sẽ tự co khi content quá dài
+### Code sửa: 
+    .layout {
+    display: flex;
+    }
+    .sidebar {
+        width: 250px;
+        flex-shrink: 0;
+    }
+    .content {
+        flex: 1;
+    }
+ảnh chạy thực tế lỗi 3 trước và sau: loi3C2.png
+
+
 
 

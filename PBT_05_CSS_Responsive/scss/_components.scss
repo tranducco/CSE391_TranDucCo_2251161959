@@ -1,0 +1,64 @@
+// Block 1: Header
+.header {
+    background-color: $secondary-color;
+    color: $white;
+    padding: $spacing-md;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+}
+// Block 2: Navigation
+.main-nav {
+    display: none; // Ẩn trên mobile
+    
+    // Gọi Mixin responsive
+    @include respond-to('tablet') {
+        display: flex;
+        gap: $spacing-md;
+    }
+    a {
+        color: $white;
+        text-decoration: none;
+        padding: $spacing-sm;
+        transition: color 0.3s ease;
+        
+        // Sử dụng parent selector (&)
+        &:hover {
+            color: $primary-color;
+        }
+        
+        &.active {
+            font-weight: bold;
+            border-bottom: 2px solid $primary-color;
+        }
+    }
+}
+// Block 3: Product Card
+.card {
+    background: $white;
+    border-radius: $spacing-sm;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    
+    // Gọi Mixin shadow
+    @include card-shadow(false);
+
+    .card-content {
+        padding: $spacing-md;
+        text-align: center;
+    }
+    .price {
+        color: $danger-color;
+        font-weight: bold;
+        margin: $spacing-sm 0 $spacing-md;
+    }
+    // Pseudo-class hover sử dụng &
+    &:hover {
+        transform: translateY(-8px);
+        @include card-shadow(true);
+    }
+}

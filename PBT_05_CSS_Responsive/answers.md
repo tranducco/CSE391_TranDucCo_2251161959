@@ -117,6 +117,29 @@ Tại sao trình duyệt KHÔNG đọc được file `.scss`?
 Cần bước gì để chuyển SCSS → CSS?
 - Compilation (Biên dịch) cần sử dụng một công cụ (Compiler) để quét file SCSS và "dịch" nó sang file CSS thuần. 
 
+## Câu B3: 
+Lệnh Compile SCSS:
+1. Sử dụng Extension trong VS Code
+2. Cài đặt extension Live Sass Compiler.
+3. Mở file style.scss.
+4. Bấm nút "Watch Sass" ở thanh trạng thái (status bar) dưới cùng của VS Code. File style.css sẽ tự động được tạo và liên tục cập nhật.
+
+## Câu C1:
+1. Trang web youtube khi mở 3 dạng: Mobile, Tablet, Desktop ( ảnh trong folder screenshots)
+2. Phân tích Layout
+- Navigation (Thanh điều hướng):
+    + Desktop & Tablet: Có nút Hamburger (☰) góc trái để mở/đóng Sidebar. Thanh tìm kiếm dài nằm ở giữa
+    + Mobile: Thanh tìm kiếm dài biến mất (chỉ còn lại icon kính lúp). Xuất hiện thanh điều hướng dưới đáy màn hình (Bottom Navigation: Trang chủ, Shorts, Kênh đăng ký...)
+- Lưới content (Video Grid) thay đổi mấy cột?
+    + Desktop: 4 đến 5 cột video trên một hàng (tùy việc Sidebar đang mở hay đóng)
+    + Tablet: 2 đến 3 cột
+    + Mobile: 1 cột duy nhất (ảnh thumbnail của video phóng to tràn viền)
+- Elements bị ẩn (Mobile):
+    + Toàn bộ menu Sidebar bên trái
+    + Thanh tìm kiếm mở rộng (text input)
+- Font size:
+    + Có thay đổi nhẹ. Tiêu đề video và tên kênh trên Mobile được thu nhỏ lại (khoảng 12px-14px) để tránh việc chữ bị rớt thành quá nhiều dòng, giúp tiết kiệm diện tích.
+
 
 
 

@@ -139,6 +139,71 @@ Lệnh Compile SCSS:
     + Thanh tìm kiếm mở rộng (text input)
 - Font size:
     + Có thay đổi nhẹ. Tiêu đề video và tên kênh trên Mobile được thu nhỏ lại (khoảng 12px-14px) để tránh việc chữ bị rớt thành quá nhiều dòng, giúp tiết kiệm diện tích.
+3. @media mà trang dùng : ảnh media_queries_C1.png
+
+## Câu C2:
+
+1. Phân tích Chiến lược Layout & Wireframe
+    - Màn hình Mobile (< 768px) Bị ẩn: Không ẩn thành phần nội dung nào để đảm bảo trải nghiệm đầy đủ, chỉ ẩn số điện thoại ở Header nếu màn hình quá nhỏ (chuyển thành icon gọi) hoặc giữ nguyên dạng text nhỏ.Vị trí Form đặt bàn: Nằm ở phía dưới Grid ảnh món ăn và trên Bản đồ Google Maps. Sắp xếp (Dọc 1 cột): Header (Logo + Phone) -> Hero Image -> Grid ảnh món ăn (1 cột) ->  Form đặt bàn -> Bản đồ Maps -> Footer
+    - Màn hình Tablet (768px - 1023px): Grid ảnh món ăn: Hiển thị 2 cột x 3 hàng hoặc 3 cột x 2 hàng (tối ưu nhất là 2 cột để ảnh đủ lớn). Vị trí Bản đồ: Nằm song song (chia đôi layout) với Form đặt bàn hoặc nằm toàn chiều ngang ngay phía dưới Form. Ở đây chọn phương án tối ưu: Form và Bản đồ chia đôi thành 2 cột cạnh nhau để tiết kiệm không gian chiều dọc
+    - Màn hình Desktop (≥ 1024px) Số lượng cột: Layout tổng thể sử dụng 12 cột hệ thống hoặc chia vùng rõ rệt. Sidebar: Không cần thiết phải có Sidebar tách biệt truyền thống. Thay vào đó, phần Form đặt bàn đóng vai trò như một "Sidebar cố định" nằm bên cạnh cụm (Hero + Grid ảnh) hoặc đi kèm với Bản đồ ở hàng dưới. Bố cục tối ưu: Grid ảnh món ăn chuyển thành 3 cột x 2 hàng. Phần dưới chia thành 2 cột lớn: Bên trái là Form đặt bàn (chiếm 50-60%), bên phải là Bản đồ Google Maps (chiếm 40-50%).
+
+2. CSS Skeleton (Mobile-First Grid Layout):
+```html
+<div class="wrapper">
+  <header class="header">Header (Logo + Phone)</header>
+  <section class="hero">Hero Image</section>
+  <section class="menu-grid">
+    <div class="dish">1</div><div class="dish">2</div><div class="dish">3</div>
+    <div class="dish">4</div><div class="dish">5</div><div class="dish">6</div>
+  </section>
+  <section class="booking-form">Form đặt bàn</section>
+  <section class="map">Google Maps</section>
+  <footer class="footer">Footer</footer>
+</div>
+```
+```css
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.header, .hero, .menu-grid, .booking-form, .map, .footer {
+  width: 100%;
+}
+.menu-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+}
+
+/* 2. TABLET BREAKPOINT (≥ 768px) */
+@media (min-width: 768px) {
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .header, .hero, .menu-grid, .footer {
+    grid-column: span 2;
+  }
+}
+
+/*3. DESKTOP BREAKPOINT (≥ 1024px)*/
+@media (min-width: 1024px) {
+  .wrapper {
+    grid-template-columns: 3fr 2fr; 
+  }
+
+  .header, .hero, .menu-grid, .footer {
+    grid-column: span 2;
+  }
+  .menu-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
 
 
 

@@ -44,3 +44,35 @@ console.log("5" + 3) và console.log("5" - 3) cho ra kết quả khác nhau vì 
 
 Từ giờ trở đi nên dùng === để tránh các lỗi logic không mong muốn do cơ chế tự động ép kiểu ngầm (Type Coercion) của JavaScript
 
+## Câu A4 - Truthy & Falsy
+- Danh sách giá trị Falsy trong JS (có 8 cái chính): false, 0, -0, 0n (BigInt), "" (chuỗi rỗng), null, undefined, NaN.
+- if ("0") console.log("A"); : có in 
+- if ("") console.log("B");  : không in
+- if ([]) console.log("C");   : có in
+- if ({}) console.log("D");    : có in
+- if (null) console.log("E");   : không in
+- if (0) console.log("F");     : không in
+- if (-1) console.log("G");     : có in
+- if (" ") console.log("H");     : có in
+
+## Câu A5 - Template Literals
+```javascript
+// Cách 1:
+const greeting = `Xin chào ${name}! Bạn ${age} tuổi.`;
+
+// Cách 2:
+const url = `https://api.example.com/users/${userId}/orders?page=${page}`;
+
+// Cách 3:
+const html = `
+<div class="card">
+  <h2>${title}</h2>
+  <p>${description}</p>
+  <span>Giá: ${price}đ</span>
+</div>
+`;
+```
+
+
+
+

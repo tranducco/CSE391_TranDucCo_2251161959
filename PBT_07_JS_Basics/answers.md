@@ -72,7 +72,8 @@ const html = `
 </div>
 `;
 ```
-
+## Câu B1: Máy tính đơn giản
+Tạo file calculator.js
 
 
 

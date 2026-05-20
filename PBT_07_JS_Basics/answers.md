@@ -32,3 +32,15 @@ so sánh: code chạy khác so với dự đoán ở đoạn 2: máy báo lỗi 
 
 console.log("5" + 3) và console.log("5" - 3) cho ra kết quả khác nhau vì với "5"+ 3 thì 3 bị ép kiểu thành chuỗi để nối với "5" thành 53 , còn với "5" - 3 thì "5" bị ép kiểu thành số để thực hiện phép trừ 
 
+## Câu A3 - So sánh == vs ===
+- console.log(5 == "5"); : trả về true
+- console.log(5 === "5"); : trả về false   
+- console.log(null == undefined); : trả về true
+- console.log(null === undefined); : trả về false 
+- console.log(NaN == NaN); : trả về false 
+- console.log(0 == false); : trả về true 
+- console.log(0 === false); : trả về false 
+- console.log("" == false); : trả về true      
+
+Từ giờ trở đi nên dùng === để tránh các lỗi logic không mong muốn do cơ chế tự động ép kiểu ngầm (Type Coercion) của JavaScript
+

@@ -5,6 +5,30 @@ Dự đoán:
 - Đoạn 3: báo lỗi 
 - Đoạn 4: in ra mảng [1,2,3,4]
 - Đoạn 5: in ra: "Trong block: 2" sau đó là "Ngoài block: 1"
-so sánh: code chạy khác so với dự đoán ở đoạn 2: máy báo lỗi :var_let_const.js:6 Uncaught ReferenceError: Cannot access 'y' before initialization , còn lại dự đoán khá chính xác
+so sánh: code chạy khác so với dự đoán ở đoạn 2: máy báo lỗi :var_let_const.js:6 Uncaught ReferenceError: Cannot access 'y' before initialization ,Giải thích: Biến khai báo bằng let cũng được hoist nhưng nằm trong vùng an toàn gọi là Temporal Dead Zone (TDZ) cho đến khi được gán giá trị, còn lại dự đoán khá chính xác
 
+
+## Câu A2 - Data Types & Coercion
+1. console.log(typeof null);  
+- in ra object 
+2. console.log(typeof undefined);      
+- in ra undefined
+3. console.log(typeof NaN);      
+- in ra number
+4. console.log("5" + 3);                
+- in ra 53
+5. console.log("5" - 3);                
+- in ra 2
+6. console.log("5" * "3");           
+- in ra NaN
+7. console.log(true + true);      
+- in ra 2
+8. console.log([] + []);               
+- in ra ""
+9. console.log([] + {});                
+- in ra {}
+10. console.log({} + []);               
+- in ra []
+
+console.log("5" + 3) và console.log("5" - 3) cho ra kết quả khác nhau vì với "5"+ 3 thì 3 bị ép kiểu thành chuỗi để nối với "5" thành 53 , còn với "5" - 3 thì "5" bị ép kiểu thành số để thực hiện phép trừ 
 

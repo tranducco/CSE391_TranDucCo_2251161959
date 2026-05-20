@@ -23,3 +23,14 @@ let a = 1;
     console.log("Trong block:", a);
 }
 console.log("Ngoài block:", a);
+
+//Câu A2:
+console.log(typeof null);            
+console.log(typeof undefined);        
+console.log("5" + 3);                
+console.log("5" - 3);               
+console.log("5" * "3");             
+console.log(true + true);            
+console.log([] + []);                
+console.log([] + {});                
+console.log({} + []);             

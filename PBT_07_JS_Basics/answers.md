@@ -145,7 +145,8 @@ for (let i = 0; i < 5; i++) {
 }
 ```
 
-
+Phần D: Quay Video
+link youtube : https://www.youtube.com/watch?v=hv9Ra_pKORI
 
 
 

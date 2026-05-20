@@ -4,4 +4,4 @@ Thông Tin Sinh Viên:
 - MSV: 2251161959
 - Lớp: 64HTTT2
 Tiến Độ:
-- Làm đến phiếu bài tập 5
+- Làm đến phiếu bài tập 7

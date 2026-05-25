@@ -87,3 +87,11 @@ nums.map(x => `Số ${x} là ${x % 2 === 0 ? 'chẵn' : 'lẻ'}`);
 // 8
 [...nums].reverse(); // dùng spread để clone mảng, reverse ko làm đổi mảng gốc
 ```
+## Câu A4 — Object Destructuring & Spread
+-  Dòng 1: iPhone 16 25990000 8 Titan
+- Dòng 2: { ram: 8, storage: 256, color: 'Titan' }
+- Dòng 3: 23990000
+- Dòng 4: true
+- Dòng 5: 25990000 (Object gốc ko bị đổi giá vì mình vừa tạo object mới)
+- Dòng 6: 16. Giải thích: Phép spread ... chỉ copy nông (shallow copy) các thuộc tính lớp ngoài cùng. Object specs ở trong vẫn trỏ chung một địa chỉ bộ nhớ với gốc, nên sửa RAM trong copy thì gốc cũng bị đổi theo.
+

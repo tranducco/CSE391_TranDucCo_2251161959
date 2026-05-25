@@ -60,3 +60,30 @@ const tinhThueBaoHiemArrow = (luong) => {
     const thue = luong > 11000000 ? luong * 0.1 : 0;
     return { thuong: thue, thuc_nhan: luong - thue };
 };
+```
+## Câu A2: Scope & Closure
+- Đoạn 1 output: 1, 2, 3, 2, 2
+- Đoạn 2 output:
+    + var: 3, 3, 3 (in ra ba số 3)
+    + let: 0, 1, 2
+Giải thích: Biến var có function scope, vòng lặp for chạy xong cực nhanh biến i tăng lên 3 rồi, sau đó 100ms setTimeout mới chạy nên in ra 3 luôn. Còn let có block scope, mỗi vòng lặp nó tạo một biến j mới lưu đúng giá trị tại thời điểm đó nên in ra đúng 0 1 2.
+
+## Câu A3 — Array Methods
+```javascript
+// 1
+nums.filter(x => x % 2 === 0);
+// 2
+nums.map(x => x * 3);
+// 3
+nums.reduce((sum, x) => sum + x, 0);
+// 4
+nums.find(x => x > 7);
+// 5
+nums.some(x => x > 10);
+// 6
+nums.every(x => x > 0);
+// 7
+nums.map(x => `Số ${x} là ${x % 2 === 0 ? 'chẵn' : 'lẻ'}`);
+// 8
+[...nums].reverse(); // dùng spread để clone mảng, reverse ko làm đổi mảng gốc
+```

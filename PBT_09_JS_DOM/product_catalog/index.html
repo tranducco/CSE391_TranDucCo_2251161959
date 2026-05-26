@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Product Catalog</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <button id="themeToggleBtn"> Dark Mode</button>
+        <div class="cart">
+            <span>🛒 Giỏ hàng: </span>
+            <span id="cartBadge" class="badge">0</span>
+        </div>
+    </header>
+
+    <div class="controls-container">
+        <input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm realtime...">
+        
+        <div id="categoryFilters" class="filters">
+            <button class="cat-btn active" data-category="all">Tất cả</button>
+            <button class="cat-btn" data-category="phone">Điện thoại</button>
+            <button class="cat-btn" data-category="laptop">Laptop</button>
+            <button class="cat-btn" data-category="tablet">Tablet</button>
+            <button class="cat-btn" data-category="watch">Đồng hồ</button>
+        </div>
+
+        <select id="sortSelect">
+            <option value="default">Sắp xếp theo...</option>
+            <option value="price-asc">Giá: Thấp đến Cao</option>
+            <option value="price-desc">Giá: Cao đến Thấp</option>
+            <option value="name-asc">Tên: A-Z</option>
+            <option value="rating-desc">Đánh giá cao nhất</option>
+        </select>
+    </div>
+
+    <div id="productGrid" class="product-grid"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>

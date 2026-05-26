@@ -55,5 +55,7 @@ thẻ ảnh chứa script, trình duyệt sẽ hiểu lầm và chạy nó.
 ```javascript
 document.querySelector("#result").textContent = userInput;
 ```
-
+## Câu A3:  Event Bubbling
+- Bình thường: Gõ code chạy nó sẽ sủi bọt (bubbling) từ trong ra ngoài. Output: BUTTON -> INNER -> OUTER.
+- Nếu bỏ comment stopPropagation(): Lệnh này dùng để chặn sủi bọt, ngăn không cho event lan lên các thẻ cha. Output chỉ hiện đúng thằng bị click: BUTTON.
 

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keyboard Shortcuts App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Keyboard & Accessibility App</h1>
+        <p>Thử nhấn <kbd>Ctrl</kbd> + <kbd>K</kbd> để mở Command Palette</p>
+    </header>
+
+    <main>
+        <h2>Gallery Ảnh (Nhấn 1-9, ←, →, Space)</h2>
+        <div class="gallery" id="galleryContainer" role="region" aria-label="Danh sách ảnh">
+            </div>
+    </main>
+
+    <div id="galleryModal" class="modal" role="dialog" aria-modal="true" aria-label="Trình xem ảnh">
+        <button id="closeGalleryBtn" class="icon-btn close-btn" aria-label="Đóng trình xem ảnh (Escape)">❌</button>
+        <div class="modal-content text-center">
+            <h3 id="galleryStatus" aria-live="polite">Đang dừng slideshow</h3>
+            <div class="gallery-viewer">
+                <button id="prevBtn" class="icon-btn nav-btn" aria-label="Ảnh trước (Mũi tên trái)">⬅️</button>
+                <img id="mainImage" src="" alt="Ảnh phóng to">
+                <button id="nextBtn" class="icon-btn nav-btn" aria-label="Ảnh tiếp theo (Mũi tên phải)">➡️</button>
+            </div>
+            <p>Phím tắt: <kbd>←</kbd> <kbd>→</kbd> (Chuyển ảnh) | <kbd>Space</kbd> (Play/Pause) | <kbd>Esc</kbd> (Đóng) | <kbd>1-9</kbd> (Nhảy đến ảnh)</p>
+        </div>
+    </div>
+
+    <div id="cmdModal" class="modal" role="dialog" aria-modal="true" aria-label="Bảng lệnh (Command Palette)">
+        <div class="cmd-content">
+            <input type="text" id="cmdInput" placeholder="Gõ lệnh tìm kiếm (VD: dark, alert...)" aria-label="Ô tìm kiếm lệnh">
+            <ul id="cmdList" role="listbox" aria-label="Danh sách lệnh">
+                </ul>
+            <p class="help-text"><kbd>↑</kbd> <kbd>↓</kbd> Chọn | <kbd>Enter</kbd> Chạy lệnh | <kbd>Esc</kbd> Đóng</p>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

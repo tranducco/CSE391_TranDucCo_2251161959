@@ -42,3 +42,18 @@ document.querySelector('#todoList li:first-child')
 document.querySelectorAll('nav a')
 ```
 
+## Câu A2 (5đ) — innerHTML vs textContent
+- Khác nhau: innerHTML lấy/chèn cả chữ lẫn các thẻ HTML (nó parse 
+thẻ HTML). textContent chỉ lấy text thuần túy, gán thẻ HTML vào
+nó cũng biến thành text bình thường luôn.
+- Khi nào dùng: Cần nhét thẻ HTML động vào thì xài innerHTML. Còn
+chỉ muốn đổi chữ (như hiển thị tên user, báo lỗi) thì bắt buộc
+xài textContent.
+- Vấn đề XSS: Vì innerHTML nó chạy luôn mã HTML, nên nếu user nhập mã độc kiểu script... hay
+thẻ ảnh chứa script, trình duyệt sẽ hiểu lầm và chạy nó.
+- Cách sửa: Chỗ kia chỉ cần đổi thành text là an toàn:
+```javascript
+document.querySelector("#result").textContent = userInput;
+```
+
+

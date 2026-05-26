@@ -95,3 +95,18 @@ nums.map(x => `Số ${x} là ${x % 2 === 0 ? 'chẵn' : 'lẻ'}`);
 - Dòng 5: 25990000 (Object gốc ko bị đổi giá vì mình vừa tạo object mới)
 - Dòng 6: 16. Giải thích: Phép spread ... chỉ copy nông (shallow copy) các thuộc tính lớp ngoài cùng. Object specs ở trong vẫn trỏ chung một địa chỉ bộ nhớ với gốc, nên sửa RAM trong copy thì gốc cũng bị đổi theo.
 
+
+## Câu C1:
+Refactor lại đoạn code ugly, dùng destructuring lấy luôn thuộc tính cho gọn:
+```javascript
+const processOrders = (orders) => 
+    orders
+        .filter(o => o.status === "completed" && o.total > 100000)
+        .map(({ id, customer, total }) => ({
+            id, customer, total,
+            discount: total * 0.1,
+            finalTotal: total * 0.9
+        }))
+        .sort((a, b) => b.finalTotal - a.finalTotal);
+```
+

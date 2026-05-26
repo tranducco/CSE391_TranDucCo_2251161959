@@ -109,4 +109,38 @@ const processOrders = (orders) =>
         }))
         .sort((a, b) => b.finalTotal - a.finalTotal);
 ```
+## Câu C2: miniArray API
+Viết lại bằng for loop thuần tuý:
+```javascript
+const miniArray = {
+    map(arr, fn) {
+        let res = [];
+        for (let i = 0; i < arr.length; i++) {
+            res.push(fn(arr[i], i, arr));
+        }
+        return res;
+    },
+    filter(arr, fn) {
+        let res = [];
+        for (let i = 0; i < arr.length; i++) {
+            if (fn(arr[i], i, arr)) res.push(arr[i]);
+        }
+        return res;
+    },
+    reduce(arr, fn, initialValue) {
+        let acc = initialValue !== undefined ? initialValue : arr[0];
+        let startIndex = initialValue !== undefined ? 0 : 1;
+        for (let i = startIndex; i < arr.length; i++) {
+            acc = fn(acc, arr[i], i, arr);
+        }
+        return acc;
+    }
+};
+//test:
+// Test phải pass:
+console.log(miniArray.map([1,2,3], x => x * 2));        // → [2,4,6]
+console.log(miniArray.filter([1,2,3,4], x => x > 2));    // → [3,4]
+console.log(miniArray.reduce([1,2,3,4], (a,b) => a+b, 0)); // → 10
+```
+
 

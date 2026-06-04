@@ -40,3 +40,20 @@
     - .container: Có chiều rộng tối đa (max-width) cố định, nhảy kích thước theo từng mốc màn hình (sm, md, lg...). Luôn được căn giữa.
     - .container-fluid: Trải dài full 100% chiều rộng màn hình ở tất cả các kích thước thiết bị.
     - .container-md: Có chiều rộng tối đa (max-width) cố định
+
+
+## Câu C1: Tùy biến Bootstrap
+1. Bạn muốn đổi màu `$primary` từ xanh mặc định sang `#E63946`. Giải thích quy trình (cần công cụ gì, modify file nào).
+- Công cụ: Cần trình biên dịch SASS (VD: Extension Live Sass Compiler trên VS Code hoặc dùng Node.js/npm).
+- Cách làm: Tạo file custom.scss. Khai báo biến $primary: #E63946; trước dòng lệnh @import "bootstrap/scss/bootstrap";. Sau đó compile file này ra file CSS để nhúng vào web.
+2. Tại sao KHÔNG nên override trực tiếp `.btn-primary { background: red; }` mà nên dùng SASS variables?
+- Nếu chỉ viết .btn-primary { background: red; }, bạn sẽ bỏ sót các trạng thái :hover, :focus, :active và hàng loạt class khác cũng dùng màu primary (như text-primary, bg-primary, border-primary).
+- Dùng biến SASS giúp Bootstrap tự động nội suy, tính toán màu sắc và đồng bộ đồng loạt cho toàn bộ hệ thống.
+
+
+## Câu C2: So sánh CSS thuần và Bootstrap
+- Số dòng CSS cần viết: CSS thuần tốn hàng chục đến hàng trăm dòng (để xử lý layout, media queries, hiệu ứng). Với Bootstrap, bạn tốn 0 dòng CSS custom (chỉ việc gọi class trong HTML)
+- Thời gian phát triển: Bootstrap nhanh hơn vượt trội, giúp dựng form/layout trong vài phút. CSS thuần tốn nhiều thời gian code, căn chỉnh và fix bug trên từng thiết bị
+- Khả năng tùy biến: CSS thuần linh hoạt 100%. Bootstrap bị gò bó theo khuôn mẫu mặc định, muốn tùy biến sâu phải can thiệp bằng SASS khá phức tạp hoặc tốn công viết CSS đè
+- Khi nào NÊN dùng Bootstrap: Các dự án cần ra mắt nhanh (MVP), làm trang Admin Dashboard, làm việc nhóm cần một quy chuẩn chung, hoặc dev backend không rành về CSS
+- Khi nào KHÔNG NÊN dùng Bootstrap: Các website yêu cầu thiết kế UI/UX độc bản/phá cách, dự án siêu nhỏ cần tối ưu tốc độ load (tránh tải thừa file CSS nặng), hoặc khi layout hoàn toàn không giống hệ thống Grid của Bootstrap

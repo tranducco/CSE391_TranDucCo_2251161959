@@ -48,3 +48,49 @@ Giải thích từng dòng code:
 - Network error: Lỗi rớt mạng, server sập không thể kết nối, CORS bị chặn (do bản thân fetch thất bại sinh ra lỗi).
 - Lỗi 404, 500: Bắt được là nhờ lệnh throw new Error(...) mà ta tự viết ở trên (Lưu ý: Nếu không có khối if (!response.ok) throw... thì fetch sẽ không tự nhảy vào catch đối với các lỗi 400/500).
 - JSON parse error: Lỗi khi dữ liệu trả về không phải là chuẩn JSON (ví dụ server trả về HTML, hoặc JSON bị hỏng), hàm .json() sẽ bị lỗi (reject) và nhảy vào catch.
+
+### Câu A3 (5đ) — Promise States
+
+Vẽ sơ đồ 3 trạng thái của Promise (`Pending → Fulfilled`, `Pending → Rejected`).
+1. Sơ đồ 3 trạng thái của Promise: 
+```plaintext
+                    ↗ [Fulfilled] (Thành công) -> dùng .then()
+ [Pending] (Đang chờ)
+                    ↘ [Rejected]  (Thất bại)   -> dùng .catch()
+```
+
+Giải thích: Callback Hell là gì?
+- Callback Hell (hay Kim tự tháp diệt vong - Pyramid of Doom) là tình trạng các hàm callback bị lồng vào nhau quá nhiều lớp (nested callbacks) để xử lý các tác vụ bất đồng bộ tuần tự. Việc này khiến code bị phình to theo chiều ngang, cực kỳ khó đọc, khó bảo trì và khó xử lý lỗi.
+Viết ví dụ 4 cấp:
+```javascript
+// Các callback lồng nhau liên tục để chờ kết quả của bước trước
+getUser(1, function(user) {
+    getOrders(user.id, function(orders) {
+        getOrderDetails(orders[0].id, function(details) {
+            processPayment(details.amount, function(status) {
+                console.log("Trạng thái thanh toán: " + status);
+            });
+        });
+    });
+});
+``` 
+callback hell → Refactor thành async/await: 
+```javascript
+// Viết code bất đồng bộ trông giống như code đồng bộ (phẳng hơn, dễ đọc hơn)
+async function handlePayment(userId) {
+    try {
+        const user = await getUser(userId);
+        const orders = await getOrders(user.id);
+        const details = await getOrderDetails(orders[0].id);
+        const status = await processPayment(details.amount);
+        
+        console.log("Trạng thái thanh toán: " + status);
+    } catch (error) {
+        console.error("Có lỗi xảy ra ở một trong các bước:", error);
+    }
+}
+
+handlePayment(1);
+```
+
+

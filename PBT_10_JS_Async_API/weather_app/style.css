@@ -1,0 +1,37 @@
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+body { background: linear-gradient(135deg, #74ebd5, #ACB6E5); display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+
+.app-container { background: white; padding: 30px; border-radius: 12px; width: 100%; max-width: 400px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); text-align: center; }
+h1 { margin-bottom: 20px; color: #333; font-size: 24px; }
+
+/* Search Box */
+.search-box { display: flex; gap: 10px; margin-bottom: 20px; }
+input { flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 16px; outline: none; }
+input:focus { border-color: #007BFF; }
+button { padding: 12px 20px; border: none; background: #007BFF; color: white; border-radius: 6px; cursor: pointer; font-weight: bold; }
+button:hover { background: #0056b3; }
+
+/* History */
+.history-container { text-align: left; margin-bottom: 20px; font-size: 14px; color: #666; }
+.history-container ul { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.history-container li { background: #f0f0f0; padding: 5px 10px; border-radius: 15px; cursor: pointer; transition: background 0.2s; }
+.history-container li:hover { background: #e0e0e0; color: #007BFF; }
+
+/* States */
+.status-container { min-height: 150px; display: flex; flex-direction: column; justify-content: center; }
+.state { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.hidden { display: none !important; }
+
+/* Loading Spinner */
+.spinner { border: 4px solid #f3f3f3; border-top: 4px solid #007BFF; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin-bottom: 10px; }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+/* Error & Success */
+.error-msg { color: #d9534f; background: #fdf0f0; padding: 15px; border-radius: 8px; border: 1px solid #d9534f; }
+.weather-info { background: #f8f9fa; padding: 20px; border-radius: 8px; }
+.weather-info h2 { font-size: 28px; margin-bottom: 10px; color: #2c3e50; }
+.weather-main { display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 10px; }
+.icon { font-size: 50px; }
+.temp { font-size: 40px; font-weight: bold; color: #ff7675; }
+.desc { font-size: 18px; color: #555; font-weight: bold; margin-bottom: 15px; text-transform: capitalize; }
+.details { font-size: 16px; color: #666; }

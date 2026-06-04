@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <h1>Dự báo thời tiết ⛅</h1>
+        
+        <div class="search-box">
+            <input type="text" id="cityInput" placeholder="Nhập tên thành phố (vd: Hanoi, Tokyo...)">
+            <button id="searchBtn">Tìm</button>
+        </div>
+
+        <div class="history-container">
+            <p>Tìm kiếm gần đây:</p>
+            <ul id="historyList"></ul>
+        </div>
+
+        <div id="statusContainer" class="status-container">
+            
+            <div id="state-loading" class="state hidden">
+                <div class="spinner"></div>
+                <p>Đang tải dữ liệu...</p>
+            </div>
+
+            <div id="state-error" class="state hidden error-msg">
+                <p>❌ <span id="errorText">Thành phố không tồn tại hoặc lỗi mạng!</span></p>
+            </div>
+
+            <div id="state-success" class="state hidden weather-info">
+                <h2 id="cityName">Hanoi</h2>
+                <div class="weather-main">
+                    <span id="weatherIcon" class="icon">☁️</span>
+                    <span id="temperature" class="temp">25°C</span>
+                </div>
+                <p id="description" class="desc">Trời nhiều mây</p>
+                <div class="details">
+                    <p>💧 Độ ẩm: <span id="humidity">80%</span></p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

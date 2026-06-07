@@ -94,3 +94,116 @@ handlePayment(1);
 ```
 
 
+## PHẦN C — PHÂN TÍCH 
+
+### Câu C1  — Error Handling Strategy
+
+Bạn xây dựng app E-Commerce gọi nhiều APIs. Thiết kế **chiến lược xử lý lỗi**:
+
+1. **Network errors** (mất mạng giữa chừng) → Xử lý thế nào?
+- Chiến lược: fetch sẽ ném ra TypeError. Xử lý bằng cách đưa vào khối catch, đồng thời kết hợp navigator.onLine để lắng nghe sự kiện offline/online của window, từ đó hiện một Banner/Toast đỏ: "Bạn đang ngoại tuyến. Vui lòng kiểm tra lại kết nối mạng"
+2. **API errors** (server trả 500, 404, 429 Too Many Requests) → Xử lý từng loại
+- 404 (Not Found): Điều hướng người dùng sang trang 404 Không tìm thấy hoặc hiện thông báo "Sản phẩm không tồn tại"
+- 500 (Internal Server Error): Lỗi từ phía máy chủ. Thông báo cho user: "Hệ thống đang bảo trì hoặc gặp sự cố, vui lòng thử lại sau". Tuyệt đối không hiện log kỹ thuật cho user
+- 429 (Too Many Requests): Server chặn vì spam request. Xử lý bằng cách hiện thông báo "Bạn thao tác quá nhanh, vui lòng đợi [X] giây" và disable nút bấm (thường kết hợp cơ chế Exponential Backoff để thử lại)
+3. **Timeout** (API chậm > 10 giây) → Viết code `fetchWithTimeout(url, ms)`
+Sử dụng AbortController để ngắt kết nối chủ động:
+```javascript
+async function fetchWithTimeout(url, ms = 10000) {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), ms);
+
+    try {
+        const response = await fetch(url, { signal: controller.signal });
+        clearTimeout(timeoutId); // Xóa timer nếu thành công sớm
+        return response;
+    } catch (error) {
+        if (error.name === 'AbortError') {
+            throw new Error(`Request quá hạn ${ms}ms`);
+        }
+        throw error; // Các lỗi network khác
+    }
+}
+```
+4. **Retry logic** (thử lại 3 lần nếu lỗi network) → Viết code `fetchWithRetry(url, maxRetries)`
+- Dùng vòng lặp for để thực hiện lại request, trả về ngay nếu thành công:
+```javascript
+    async function fetchWithRetry(url, maxRetries = 3) {
+    for (let i = 0; i < maxRetries; i++) {
+        try {
+            const response = await fetch(url);
+            if (!response.ok) throw new Error(`HTTP Lỗi ${response.status}`);
+            return await response.json(); // Thành công thì thoát hàm
+        } catch (error) {
+            console.warn(`Lần thử ${i + 1} thất bại...`);
+            if (i === maxRetries - 1) throw new Error("Đã thử tối đa số lần nhưng vẫn lỗi.");
+            // Có thể thêm setTimeout ở đây để delay trước khi thử lại (Backoff)
+        }
+    }
+}
+```
+### Câu C2 — Promise.all vs Promise.allSettled vs Promise.race
+| Method | Khi nào resolve? | Khi nào reject? | Use case |
+|--------|------------------|-----------------|----------|
+| `.all()` | Khi tất cả các Promise đều resolve | Khi có bất kì 1 Promise nào reject (lỗi). | Tải trang thanh toán (cần có đồng thời thông tin user, giỏ hàng, phí ship) |
+| `.allSettled()` | Khi tất cả các Promise đã hoàn tất (dù resolve hay reject) | Không bao giờ reject tổng thể (luôn trả về mảng kết quả) | Load Dashboard có nhiều widget độc lập (1 widget lỗi, cái khác vẫn hiện) |
+| `.race()` | Ngay khi Promise đầu tiên resolve hoặc reject | Phụ thuộc vào Promise chạy xong đầu tiên | Ép timeout cho 1 API (Đua giữa fetch và một cái timer 5s) |
+| `.any()` | Ngay khi Promise đầu tiên resolve thành công. | Chỉ khi tất cả các Promise đều bị reject. | Gọi ảnh/tài nguyên từ nhiều Server/CDN, cái nào tải xong trước thì lấy |
+
+- Ví dụ Code thực tế:
++ Promise.all() - Scenario: Màn hình Checkout:
+```javascript
+    // Nếu 1 trong 3 API này lỗi, cả quá trình bị hủy để tránh user đặt hàng sai.
+try {
+    const [user, cart, shippingFees] = await Promise.all([
+        fetch('/api/user/profile').then(r => r.json()),
+        fetch('/api/cart/items').then(r => r.json()),
+        fetch('/api/shipping/calculate').then(r => r.json())
+    ]);
+    renderCheckoutPage(user, cart, shippingFees);
+} catch (error) {
+    showError("Không thể tải thông tin thanh toán, vui lòng tải lại trang.");
+}
+```
++ Promise.allSettled() - Scenario: Load Widget Dashboard:
+```javascript
+const results = await Promise.allSettled([
+    fetch('/api/weather'),
+    fetch('/api/news'),
+    fetch('/api/ads')
+]);
+
+results.forEach((result, index) => {
+    if (result.status === 'fulfilled') renderWidget(index, result.value);
+    else renderWidgetError(index, "Lỗi tải dữ liệu");
+});
+```
++ Promise.race() - Scenario: Request Timeout Override:
+```javascript
+// Ép API phải trả lời trong 3 giây, nếu không sẽ bị từ chối.
+const fetchData = fetch('/api/heavy-data').then(r => r.json());
+const timeout = new Promise((_, reject) => 
+    setTimeout(() => reject(new Error("Timeout quá 3 giây")), 3000)
+);
+
+try {
+    const result = await Promise.race([fetchData, timeout]);
+    console.log("Dữ liệu lấy kịp thời gian:", result);
+} catch (error) {
+    console.error("Xử lý lỗi:", error.message);
+}
+```
++ Promise.any() - Scenario: Tải Video/Ảnh từ nhiều CDN:
+```javascript
+// Gửi request xin ảnh từ 3 máy chủ khác nhau, server nào phản hồi nhanh nhất và thành công thì lấy, bỏ qua server bị sập.
+try {
+    const fastImage = await Promise.any([
+        fetch('https://cdn1.example.com/image.jpg').then(r => r.blob()),
+        fetch('https://cdn2.example.com/image.jpg').then(r => r.blob()),
+        fetch('https://cdn3.example.com/image.jpg').then(r => r.blob())
+    ]);
+    displayImage(fastImage);
+} catch (error) {
+    console.error("Cả 3 máy chủ CDN đều sập (AggregateError)");
+}
+```

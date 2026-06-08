@@ -42,5 +42,4 @@ PBT_07_JS_Basics/
     + Click chuột phải vào file guess_number.html và chọn Open with Live Server.
     + Mở DevTools (F12)
     + Bật Device Toolbar để kiểm tra giao diện trên các thiết bị Mobile, Tablet, và Desktop.
-4. Screenshots (Kết quả thực hành):
-E:\Hoc_Web\CSE391_TranDucCo_2251161959\PBT_07_JS_Basics\screenshots
+4. Screenshots (Kết quả thực hành):PBT_07_JS_Basics\screenshots

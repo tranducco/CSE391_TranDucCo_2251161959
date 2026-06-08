@@ -1,32 +1,66 @@
-.brand {
-    width: 50%;
-    color: blueviolet;
-    background-color: seagreen;
+/* 1. Reset CSS cơ bản (Best Practice) */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
-.nav
-{
-    width: 70%;
-    color: rgb(0, 51, 255);
-    background-color: rgb(187, 56, 3);
+
+/* 2. Styling cấu trúc cơ bản */
+body {
+    font-family: sans-serif;
+    line-height: 1.6;
+    padding: 20px;
 }
-#header
-{
-    display: flex;
-    margin: 20px;
+
+/* Sửa lại CSS của bạn cho đúng các thẻ HTML */
+header {
+    margin-bottom: 20px;
     border: 2px solid #0e0f0f;
     border-radius: 10px;
-    
+}
 
+nav {
+    background-color: rgb(187, 56, 3);
+    padding: 10px;
 }
-#header ul
-{
-    opacity: 0.2;
+
+nav ul {
     list-style-type: none;
+    display: flex;
+    gap: 20px; /* Tạo khoảng cách giữa các link thay vì opacity: 0.2 */
 }
-h1
-{
+
+nav a {
+    color: white; /* Đổi màu cho dễ đọc */
+    text-decoration: none;
+}
+
+h1 {
     text-align: center;
-    text-shadow: 0rcaps 2px 2px 4px #16bfb4;
+    /* Đã sửa lỗi 0rcaps thành đúng cú pháp đổ bóng */
+    text-shadow: 2px 2px 4px #16bfb4; 
     font-size: 30px;
     color: rgb(255, 0, 204);
+}
+
+/* 3. Đưa các thuộc tính hiển thị từ HTML sang CSS */
+table {
+    border-collapse: collapse; /* Thay thế cho border="1" */
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}
+
+img {
+    max-width: 100%; /* Resize ảnh chuẩn responsive */
+    height: auto;
+}
+
+/* Riêng avatar ở trang profile */
+#ve-toi img {
+    width: 200px; 
 }

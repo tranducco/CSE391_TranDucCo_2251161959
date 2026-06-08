@@ -43,4 +43,4 @@ PBT_03_CSS_Core/
 3. Chạy dự án: 
 - Cách 1 (Khuyên dùng): Mở thư mục dự án bằng Visual Studio Code, sau đó cài đặt extension Live Server. Click chuột phải vào file index.html hoặc profile.html và chọn Open with Live Server để xem trang web với tính năng auto-reload
 - Cách 2: Mở trực tiếp các file .html (như profile.html, index.html) bằng bất kỳ trình duyệt web nào (Chrome, Edge, Firefox, Safari...).
-4. Screenshots (Kết quả thực hành):E:\Hoc_Web\CSE391_TranDucCo_2251161959\PBT_03_CSS_Core\screenshots
+4. Screenshots (Kết quả thực hành):PBT_03_CSS_Core\screenshots

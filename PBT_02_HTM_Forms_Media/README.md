@@ -44,4 +44,4 @@ PBT_02_HTM_Forms_Media/
 3. Chạy dự án: 
 - Cách 1 (Khuyên dùng): Mở thư mục dự án bằng Visual Studio Code, sau đó cài đặt extension Live Server. Click chuột phải vào file profile.html hoặc products.html và chọn Open with Live Server để xem trang web với tính năng auto-reload.
 - Cách 2: Mở trực tiếp các file .html checkout.html, media.html, register.html bằng bất kỳ trình duyệt web nào (Chrome, Edge, Firefox, Safari...).
-4. Screenshots (Kết quả thực hành):E:\Hoc_Web\CSE391_TranDucCo_2251161959\PBT_02_HTM_Forms_Media\screenshots
+4. Screenshots (Kết quả thực hành):PBT_02_HTM_Forms_Media\screenshots

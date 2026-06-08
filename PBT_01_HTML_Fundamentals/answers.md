@@ -15,6 +15,7 @@ Câu A2:
     3. Thiếu các thẻ <h1>,<h2> : các thẻ tiêu đề đóng vai trò quan trọng để nhận biết được chủ đề chính của trang web .
     4. Thiếu thuộc tính alt trong thẻ ảnh <img>: thuộc tính này giúp mô tả ảnh chi tiết , giúp cho googlebot có thể nhận biết được ảnh dễ hơn .
 Sửa lại code : 
+```html
     <header class="header">
         <div class="logo">ShopTLU</div>
         <nav class="menu">
@@ -36,6 +37,7 @@ Sửa lại code :
     <footer class="footer">
         <p>© 2026 ShopTLU</p>
     </footer>
+```
 
 Câu A3:
 - Hiển thị như sau: 
@@ -86,6 +88,7 @@ Câu B4:Chọn trang shopee
     (seomantic_shopee_2.png)
 
 Câu C1:
+```html
     <!DOCTYPE html> <!-- Khai báo HTML5 -->
 <html lang="vi"> <!-- Ngôn ngữ tiếng Việt -->
 <head>
@@ -95,9 +98,9 @@ Câu C1:
 </head>
 <body>
     <!-- HEADER + NAVIGATION -->
-    <header> <!-- header dùng cho phần đầu trang -->
-        <nav> <!-- nav vì đây là khu điều hướng -->
-            <ul> <!-- danh sách menu -->
+    <header> 
+        <nav> 
+            <ul> 
                 <li><a href="#">Trang chủ</a></li> <!-- link điều hướng -->
                 <li><a href="#">Danh mục</a></li>
                 <li><a href="#">Liên hệ</a></li>
@@ -173,7 +176,7 @@ Câu C1:
     </footer>
 </body>
 </html>
-
+```
 Câu C2:
 Theo em, quan điểm “dùng <div> cho mọi thứ là đủ” nghe thì tiện nhưng về lâu dài lại không tối ưu. Thứ nhất là về SEO: các công cụ tìm kiếm như Google không chỉ đọc nội dung mà còn dựa vào cấu trúc HTML để hiểu trang web. Khi dùng các thẻ semantic như <header>, <main>, <article>, <nav>, bot sẽ dễ xác định đâu là nội dung chính, đâu là menu, từ đó index chính xác hơn. Nếu toàn bộ đều là <div> thì cấu trúc bị “mù nghĩa”, SEO kém hơn.
 Thứ hai là về Accessibility (khả năng truy cập). Các công cụ hỗ trợ như NVDA screen reader hay VoiceOver sẽ dựa vào semantic HTML để đọc trang cho người khiếm thị. Ví dụ, khi dùng <nav>, người dùng có thể nhanh chóng nhảy tới khu điều hướng; hoặc <main> giúp bỏ qua phần header dài. Nếu chỉ dùng <div>, trải nghiệm của họ sẽ rất khó khăn vì không có “mốc” rõ ràng.

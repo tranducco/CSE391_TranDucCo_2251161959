@@ -66,5 +66,4 @@ PBT_10_JS_Async_API/
     + Di chuyển vào từng thư mục ứng dụng (weather_app, user_directory, gallery, dashboard).
     + Click chuột phải vào file index.html và chọn Open with Live Server.
     + Mở DevTools (F12) -> tab Network (để giả lập Offline/Slow 3G test Error state) và tab Console để theo dõi kết quả trả về từ API.
-4. Screenshots (Kết quả thực hành):
-E:\Hoc_Web\CSE391_TranDucCo_2251161959\PBT_10_JS_Async_API\screenshots
+4. Screenshots (Kết quả thực hành):PBT_10_JS_Async_API\screenshots

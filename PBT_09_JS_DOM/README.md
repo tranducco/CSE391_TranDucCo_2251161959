@@ -57,5 +57,4 @@ PBT_09_JS_DOM/
     + Di chuyển vào từng thư mục ứng dụng (todo_app, product_catalog, form_validator, keyboard_app).
     + Click chuột phải vào file index.html và chọn Open with Live Server.
     + Mở DevTools (F12) tab Console để theo dõi log và quá trình xử lý DOM.
-4. Screenshots (Kết quả thực hành):
-E:\Hoc_Web\CSE391_TranDucCo_2251161959\PBT_09_JS_DOM\screenshots
+4. Screenshots (Kết quả thực hành):PBT_09_JS_DOM\screenshots

@@ -53,5 +53,4 @@ PBT_05_CSS_Responsive/
 4. Biên dịch SCSS (dành cho Bài B3):
 - Nếu bạn muốn chỉnh sửa code SCSS trong thư mục /scss, bạn cần sử dụng extension Live Sass Compiler trên VS Code.
 - Nhấn nút Watch Sass ở thanh trạng thái bên dưới để tự động biên dịch style.scss sang style.css mỗi khi lưu file.
-4. Screenshots (Kết quả thực hành):
-E:\Hoc_Web\CSE391_TranDucCo_2251161959\PBT_05_CSS_Responsive\screenshots
+4. Screenshots (Kết quả thực hành):PBT_05_CSS_Responsive\screenshots

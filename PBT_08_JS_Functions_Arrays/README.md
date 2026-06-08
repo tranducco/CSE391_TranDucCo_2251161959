@@ -41,5 +41,4 @@ PBT_08_JS_Functions_Arrays/
     + Sử dụng Visual Studio Code, cài đặt extension Live Server.
     + Click chuột phải vào file product_manager.html và chọn Open with Live Server.
     + Mở DevTools (F12) -> Bật Device Toolbar để kiểm tra giao diện trên các thiết bị Mobile, Tablet, và Desktop.
-4. Screenshots (Kết quả thực hành):
-E:\Hoc_Web\CSE391_TranDucCo_2251161959\PBT_08_JS_Functions_Arrays\screenshots
+4. Screenshots (Kết quả thực hành):PBT_08_JS_Functions_Arrays\screenshots

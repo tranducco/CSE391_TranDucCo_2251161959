@@ -39,4 +39,4 @@ PBT_06_CSS_Frameworks/
     + Sử dụng Visual Studio Code, cài đặt extension Live Server.
     + Click chuột phải vào file bootstrap_landing.html hoặc bootstrap_dashboard.html và chọn Open with Live Server.
     + Mở DevTools (F12) -> Bật Device Toolbar để kiểm tra giao diện trên các thiết bị Mobile, Tablet, và Desktop.
-4. Screenshots (Kết quả thực hành):E:\Hoc_Web\CSE391_TranDucCo_2251161959\PBT_06_CSS_Frameworks\screenshots
+4. Screenshots (Kết quả thực hành):PBT_06_CSS_Frameworks\screenshots
